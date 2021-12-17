@@ -14,7 +14,7 @@ provider:
     apiGateway: true
     lambda: true
   environment:
-    NODE_ENV: development
+    NODE_ENV: production
     USER_AWS_ACCESS_KEY_ID: ${param:USER_AWS_ACCESS_KEY_ID}
     USER_AWS_SECRET_ACCESS_KEY: ${param:USER_AWS_SECRET_ACCESS_KEY}
     DATABASE_URL_DEV: ${param:DATABASE_URL_DEV}
