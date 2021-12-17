@@ -1,0 +1,40 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_DEV")
+}
+
+model users {
+  id              String       @id @default(uuid()) @db.Uuid
+  phone           String
+  phone_confirmed Boolean      @default(false)
+  type            String?
+  allow_order     Boolean      @default(false)
+  is_active       Boolean      @default(false)
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @default(now())
+  last_events     last_event[]
+}
+
+model last_event {
+  id         String   @id @default(uuid()) @db.Uuid
+  type       String
+  user_id    String?  @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  users      users?   @relation(fields: [user_id], references: [id])
+}
+
+model phone_confirmation {
+  id         String    @id @default(uuid()) @db.Uuid
+  phone      String
+  code       String
+  ip         String
+  used_at    DateTime?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+}
