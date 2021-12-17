@@ -1,10 +1,10 @@
 import { objectType } from "nexus";
-import { Users } from "./users";
+import { User } from "./user";
 
 export const GetUserResult = objectType({
   name: "GetUserResult",
   definition(t) {
     t.nonNull.string("message");
-    t.field("users", { type: Users });
+    t.field("user", { type: User });
   },
 });

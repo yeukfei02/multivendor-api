@@ -33,11 +33,11 @@ export interface NexusGenObjects {
   }
   GetUserResult: { // root type
     message: string; // String!
-    users?: NexusGenRootTypes['Users'] | null; // Users
+    user?: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: {};
   Query: {};
-  Users: { // root type
+  User: { // root type
     allow_order: boolean; // Boolean!
     created_at: string; // String!
     id: string; // String!
@@ -64,15 +64,15 @@ export interface NexusGenFieldTypes {
   }
   GetUserResult: { // field return type
     message: string; // String!
-    users: NexusGenRootTypes['Users'] | null; // Users
+    user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
   }
   Query: { // field return type
-    getUsers: NexusGenRootTypes['GetUserResult']; // GetUserResult!
+    getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
   }
-  Users: { // field return type
+  User: { // field return type
     allow_order: boolean; // Boolean!
     created_at: string; // String!
     id: string; // String!
@@ -89,15 +89,15 @@ export interface NexusGenFieldTypeNames {
   }
   GetUserResult: { // field return type name
     message: 'String'
-    users: 'Users'
+    user: 'User'
   }
   Mutation: { // field return type name
     addUser: 'AddUserResult'
   }
   Query: { // field return type name
-    getUsers: 'GetUserResult'
+    getUser: 'GetUserResult'
   }
-  Users: { // field return type name
+  User: { // field return type name
     allow_order: 'Boolean'
     created_at: 'String'
     id: 'String'
@@ -115,7 +115,7 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
-    getUsers: { // args
+    getUser: { // args
       phone: string; // String!
     }
   }

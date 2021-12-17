@@ -1,7 +1,7 @@
 import { objectType } from "nexus";
 
-export const Users = objectType({
-  name: "Users",
+export const User = objectType({
+  name: "User",
   definition(t) {
     t.nonNull.string("id");
     t.nonNull.string("phone");

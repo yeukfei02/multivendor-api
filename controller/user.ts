@@ -30,13 +30,13 @@ export const getUserControllerFunc = async (
 
   let response = {
     message: "getUser",
-    users: {},
+    user: {},
   };
 
   if (user) {
     response = {
       message: "getUser",
-      users: user,
+      user: user,
     };
   }
 

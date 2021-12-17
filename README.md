@@ -2,7 +2,7 @@
 
 multivendor-api
 
-documentation: <>
+documentation: <https://documenter.getpostman.com/view/3827865/UVRAH6gY>
 
 api url: <>
 
