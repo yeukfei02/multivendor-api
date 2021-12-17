@@ -15,10 +15,10 @@ provider:
     lambda: true
   environment:
     NODE_ENV: development
-    # USER_AWS_ACCESS_KEY_ID: ${params:USER_AWS_ACCESS_KEY_ID}
-    # USER_AWS_SECRET_ACCESS_KEY: ${params:USER_AWS_SECRET_ACCESS_KEY}
-    # DATABASE_URL_DEV: ${param:DATABASE_URL_DEV}
-    # DATABASE_URL: ${param:DATABASE_URL}
+    USER_AWS_ACCESS_KEY_ID: ${params:USER_AWS_ACCESS_KEY_ID}
+    USER_AWS_SECRET_ACCESS_KEY: ${params:USER_AWS_SECRET_ACCESS_KEY}
+    DATABASE_URL_DEV: ${param:DATABASE_URL_DEV}
+    DATABASE_URL: ${param:DATABASE_URL}
   apiGateway:
     shouldStartNameWithService: true
     description: multivendor api dev
