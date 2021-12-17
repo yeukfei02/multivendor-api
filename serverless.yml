@@ -23,6 +23,7 @@ provider:
     shouldStartNameWithService: true
     description: multivendor api prod
   lambdaHashingVersion: 20201221
+  timeout: 30
 
 functions:
   graphqlHandler:

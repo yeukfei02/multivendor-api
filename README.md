@@ -6,7 +6,7 @@ documentation: <https://documenter.getpostman.com/view/3827865/UVRAH6gY>
 
 api url dev: <https://dof0861809.execute-api.ap-southeast-1.amazonaws.com/dev/>
 
-api url prod: <>
+api url prod: <https://2c4l21nv89.execute-api.ap-southeast-1.amazonaws.com/prod/>
 
 ## Requirement
 
