@@ -8,7 +8,7 @@ type AddUserResult {
 
 type GetUserResult {
   message: String!
-  users: Users
+  user: User
 }
 
 type Mutation {
@@ -16,10 +16,10 @@ type Mutation {
 }
 
 type Query {
-  getUsers(phone: String!): GetUserResult!
+  getUser(phone: String!): GetUserResult!
 }
 
-type Users {
+type User {
   allow_order: Boolean!
   created_at: String!
   id: String!

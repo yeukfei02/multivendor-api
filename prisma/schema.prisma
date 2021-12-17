@@ -10,7 +10,7 @@ datasource db {
 
 model users {
   id              String       @id @default(uuid()) @db.Uuid
-  phone           String
+  phone           String       @unique
   phone_confirmed Boolean      @default(false)
   type            String?
   allow_order     Boolean      @default(false)
