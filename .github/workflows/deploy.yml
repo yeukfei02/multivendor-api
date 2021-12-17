@@ -2,8 +2,7 @@ name: Deploy master branch
 
 on:
   push:
-    branches:
-      - main
+    branches: [main, dev]
 
 jobs:
   deploy:
