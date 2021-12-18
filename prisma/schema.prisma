@@ -130,20 +130,21 @@ model brand {
 }
 
 model product {
-  id              String           @id @default(uuid()) @db.Uuid
-  name            String
-  slug            String?
-  description     String
-  price           Decimal
-  photo           String?
-  weight          Int
-  is_active       Boolean          @default(false)
-  brand_id        String           @db.Uuid
-  created_at      DateTime         @default(now())
-  updated_at      DateTime         @default(now())
-  brand           brand            @relation(fields: [brand_id], references: [id])
-  order_items     order_item[]
-  vendor_products vendor_product[]
+  id                String             @id @default(uuid()) @db.Uuid
+  name              String
+  slug              String?
+  description       String
+  price             Decimal
+  photo             String?
+  weight            Int
+  is_active         Boolean            @default(false)
+  brand_id          String             @db.Uuid
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @default(now())
+  brand             brand              @relation(fields: [brand_id], references: [id])
+  order_items       order_item[]
+  vendor_products   vendor_product[]
+  category_products category_product[]
 
   @@index([name, slug, description, price, photo, weight, is_active, brand_id])
 }
@@ -175,4 +176,33 @@ model order_item {
   product    product  @relation(fields: [product_id], references: [id])
 
   @@index([price, count, order_id, product_id])
+}
+
+model category {
+  id                String             @id @default(uuid()) @db.Uuid
+  sub_id            String             @db.Uuid
+  name              String
+  slug              String?
+  icon              String?
+  priority          Int?
+  is_active         Boolean            @default(false)
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @default(now())
+  category_products category_product[]
+
+  @@index([sub_id, name, slug, icon, priority, is_active])
+}
+
+model category_product {
+  id          String   @id @default(uuid()) @db.Uuid
+  sub_id      String   @db.Uuid
+  is_active   Boolean  @default(false)
+  category_id String   @db.Uuid
+  product_id  String   @db.Uuid
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  category    category @relation(fields: [category_id], references: [id])
+  product     product  @relation(fields: [product_id], references: [id])
+
+  @@index([sub_id, is_active, category_id, product_id])
 }
