@@ -20,6 +20,7 @@ model users {
   company            company?
   delivery_addresses delivery_address[]
   last_events        last_event[]
+  orders             order[]
 
   @@index([phone, phone_confirmed, type, allow_order, is_active])
 }
@@ -56,6 +57,7 @@ model company {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
   users      users?   @relation(fields: [user_id], references: [id])
+  orders     order[]
 
   @@index([code, name, address, user_id])
 }
@@ -73,4 +75,42 @@ model delivery_address {
   users      users?    @relation(fields: [user_id], references: [id])
 
   @@index([address, geo_code, last_used, comment, phone, user_id])
+}
+
+model order {
+  id             String    @id @default(uuid()) @db.Uuid
+  number         Int
+  status         String
+  comment        String?
+  address        String
+  delivery_at    DateTime?
+  delivery_price Decimal?
+  discount       Decimal?
+  total          Decimal?
+  user_id        String    @db.Uuid
+  company_id     String    @db.Uuid
+  vendor_id      String    @db.Uuid
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @default(now())
+  users          users?    @relation(fields: [user_id], references: [id])
+  company        company?  @relation(fields: [company_id], references: [id])
+  vendor         vendor?   @relation(fields: [vendor_id], references: [id])
+
+  @@index([number, status, comment, address, delivery_at, delivery_price, discount, total, user_id, company_id, vendor_id])
+}
+
+model vendor {
+  id            String   @id @default(uuid()) @db.Uuid
+  name          String
+  slug          String?
+  payment       String
+  delivery      String
+  description   String
+  working_hours Int
+  rating        Int
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now())
+  orders        order[]
+
+  @@index([name, slug, payment, delivery, description, working_hours, rating])
 }
