@@ -78,7 +78,7 @@ model delivery_address {
 }
 
 model order {
-  id             String    @id @default(uuid()) @db.Uuid
+  id             String       @id @default(uuid()) @db.Uuid
   number         Int
   status         String
   comment        String?
@@ -87,30 +87,32 @@ model order {
   delivery_price Decimal?
   discount       Decimal?
   total          Decimal?
-  user_id        String    @db.Uuid
-  company_id     String    @db.Uuid
-  vendor_id      String    @db.Uuid
-  created_at     DateTime  @default(now())
-  updated_at     DateTime  @default(now())
-  company        company   @relation(fields: [company_id], references: [id])
-  users          users     @relation(fields: [user_id], references: [id])
-  vendor         vendor    @relation(fields: [vendor_id], references: [id])
+  user_id        String       @db.Uuid
+  company_id     String       @db.Uuid
+  vendor_id      String       @db.Uuid
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @default(now())
+  company        company      @relation(fields: [company_id], references: [id])
+  users          users        @relation(fields: [user_id], references: [id])
+  vendor         vendor       @relation(fields: [vendor_id], references: [id])
+  order_items    order_item[]
 
   @@index([number, status, comment, address, delivery_at, delivery_price, discount, total, user_id, company_id, vendor_id])
 }
 
 model vendor {
-  id            String   @id @default(uuid()) @db.Uuid
-  name          String
-  slug          String?
-  payment       String
-  delivery      String
-  description   String
-  working_hours Int
-  rating        Int
-  created_at    DateTime @default(now())
-  updated_at    DateTime @default(now())
-  orders        order[]
+  id              String           @id @default(uuid()) @db.Uuid
+  name            String
+  slug            String?
+  payment         String
+  delivery        String
+  description     String
+  working_hours   Int
+  rating          Int
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @default(now())
+  orders          order[]
+  vendor_products vendor_product[]
 
   @@index([name, slug, payment, delivery, description, working_hours, rating])
 }
@@ -128,18 +130,49 @@ model brand {
 }
 
 model product {
-  id          String   @id @default(uuid()) @db.Uuid
-  name        String
-  slug        String?
-  description String
-  price       Decimal
-  photo       String?
-  weight      Int
-  is_active   Boolean  @default(false)
-  brand_id    String   @db.Uuid
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now())
-  brand       brand    @relation(fields: [brand_id], references: [id])
+  id              String           @id @default(uuid()) @db.Uuid
+  name            String
+  slug            String?
+  description     String
+  price           Decimal
+  photo           String?
+  weight          Int
+  is_active       Boolean          @default(false)
+  brand_id        String           @db.Uuid
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @default(now())
+  brand           brand            @relation(fields: [brand_id], references: [id])
+  order_items     order_item[]
+  vendor_products vendor_product[]
 
   @@index([name, slug, description, price, photo, weight, is_active, brand_id])
+}
+
+model vendor_product {
+  id         String   @id @default(uuid()) @db.Uuid
+  price      Decimal
+  min_count  Int
+  unit       Int
+  vendor_id  String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  product    product  @relation(fields: [product_id], references: [id])
+  vendor     vendor   @relation(fields: [vendor_id], references: [id])
+
+  @@index([price, min_count, unit, vendor_id, product_id])
+}
+
+model order_item {
+  id         String   @id @default(uuid()) @db.Uuid
+  price      Decimal
+  count      Int
+  order_id   String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  order      order    @relation(fields: [order_id], references: [id])
+  product    product  @relation(fields: [product_id], references: [id])
+
+  @@index([price, count, order_id, product_id])
 }
