@@ -9,15 +9,20 @@ datasource db {
 }
 
 model users {
-  id              String       @id @default(uuid()) @db.Uuid
-  phone           String       @unique
-  phone_confirmed Boolean      @default(false)
-  type            String?
-  allow_order     Boolean      @default(false)
-  is_active       Boolean      @default(false)
-  created_at      DateTime     @default(now())
-  updated_at      DateTime     @default(now())
-  last_events     last_event[]
+  id                 String             @id @default(uuid()) @db.Uuid
+  phone              String             @unique
+  phone_confirmed    Boolean            @default(false)
+  type               String?
+  allow_order        Boolean            @default(false)
+  is_active          Boolean            @default(false)
+  created_at         DateTime           @default(now())
+  updated_at         DateTime           @default(now())
+  company            company?
+  delivery_addresses delivery_address[]
+  last_events        last_event[]
+  orders             order[]
+
+  @@index([phone, phone_confirmed, type, allow_order, is_active])
 }
 
 model last_event {
@@ -27,6 +32,8 @@ model last_event {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
   users      users?   @relation(fields: [user_id], references: [id])
+
+  @@index([type, user_id])
 }
 
 model phone_confirmation {
@@ -37,4 +44,165 @@ model phone_confirmation {
   used_at    DateTime?
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
+
+  @@index([phone, code, ip, used_at])
+}
+
+model company {
+  id         String   @id @default(uuid()) @db.Uuid
+  code       String
+  name       String
+  address    String
+  user_id    String?  @unique @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  users      users?   @relation(fields: [user_id], references: [id])
+  orders     order[]
+
+  @@index([code, name, address, user_id])
+}
+
+model delivery_address {
+  id         String    @id @default(uuid()) @db.Uuid
+  address    String
+  geo_code   String
+  last_used  DateTime?
+  comment    String?
+  phone      String
+  user_id    String?   @db.Uuid
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  users      users?    @relation(fields: [user_id], references: [id])
+
+  @@index([address, geo_code, last_used, comment, phone, user_id])
+}
+
+model order {
+  id             String       @id @default(uuid()) @db.Uuid
+  number         Int
+  status         String
+  comment        String?
+  address        String
+  delivery_at    DateTime?
+  delivery_price Decimal?
+  discount       Decimal?
+  total          Decimal?
+  user_id        String       @db.Uuid
+  company_id     String       @db.Uuid
+  vendor_id      String       @db.Uuid
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @default(now())
+  company        company      @relation(fields: [company_id], references: [id])
+  users          users        @relation(fields: [user_id], references: [id])
+  vendor         vendor       @relation(fields: [vendor_id], references: [id])
+  order_items    order_item[]
+
+  @@index([number, status, comment, address, delivery_at, delivery_price, discount, total, user_id, company_id, vendor_id])
+}
+
+model vendor {
+  id              String           @id @default(uuid()) @db.Uuid
+  name            String
+  slug            String?
+  payment         String
+  delivery        String
+  description     String
+  working_hours   Int
+  rating          Int
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @default(now())
+  orders          order[]
+  vendor_products vendor_product[]
+
+  @@index([name, slug, payment, delivery, description, working_hours, rating])
+}
+
+model brand {
+  id         String    @id @default(uuid()) @db.Uuid
+  name       String
+  slug       String?
+  is_active  Boolean   @default(false)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  products   product[]
+
+  @@index([name, slug, is_active])
+}
+
+model product {
+  id                String             @id @default(uuid()) @db.Uuid
+  name              String
+  slug              String?
+  description       String
+  price             Decimal
+  photo             String?
+  weight            Int
+  is_active         Boolean            @default(false)
+  brand_id          String             @db.Uuid
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @default(now())
+  brand             brand              @relation(fields: [brand_id], references: [id])
+  category_products category_product[]
+  order_items       order_item[]
+  vendor_products   vendor_product[]
+
+  @@index([name, slug, description, price, photo, weight, is_active, brand_id])
+}
+
+model vendor_product {
+  id         String   @id @default(uuid()) @db.Uuid
+  price      Decimal
+  min_count  Int
+  unit       Int
+  vendor_id  String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  product    product  @relation(fields: [product_id], references: [id])
+  vendor     vendor   @relation(fields: [vendor_id], references: [id])
+
+  @@index([price, min_count, unit, vendor_id, product_id])
+}
+
+model order_item {
+  id         String   @id @default(uuid()) @db.Uuid
+  price      Decimal
+  count      Int
+  order_id   String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  order      order    @relation(fields: [order_id], references: [id])
+  product    product  @relation(fields: [product_id], references: [id])
+
+  @@index([price, count, order_id, product_id])
+}
+
+model category {
+  id                String             @id @default(uuid()) @db.Uuid
+  sub_id            String             @db.Uuid
+  name              String
+  slug              String?
+  icon              String?
+  priority          Int?
+  is_active         Boolean            @default(false)
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @default(now())
+  category_products category_product[]
+
+  @@index([sub_id, name, slug, icon, priority, is_active])
+}
+
+model category_product {
+  id          String   @id @default(uuid()) @db.Uuid
+  sub_id      String   @db.Uuid
+  is_active   Boolean  @default(false)
+  category_id String   @db.Uuid
+  product_id  String   @db.Uuid
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  category    category @relation(fields: [category_id], references: [id])
+  product     product  @relation(fields: [product_id], references: [id])
+
+  @@index([sub_id, is_active, category_id, product_id])
 }
