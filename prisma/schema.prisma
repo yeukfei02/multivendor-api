@@ -142,9 +142,9 @@ model product {
   created_at        DateTime           @default(now())
   updated_at        DateTime           @default(now())
   brand             brand              @relation(fields: [brand_id], references: [id])
+  category_products category_product[]
   order_items       order_item[]
   vendor_products   vendor_product[]
-  category_products category_product[]
 
   @@index([name, slug, description, price, photo, weight, is_active, brand_id])
 }
