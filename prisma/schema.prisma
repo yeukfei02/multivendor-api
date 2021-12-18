@@ -92,9 +92,9 @@ model order {
   vendor_id      String    @db.Uuid
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now())
-  users          users?    @relation(fields: [user_id], references: [id])
-  company        company?  @relation(fields: [company_id], references: [id])
-  vendor         vendor?   @relation(fields: [vendor_id], references: [id])
+  company        company   @relation(fields: [company_id], references: [id])
+  users          users     @relation(fields: [user_id], references: [id])
+  vendor         vendor    @relation(fields: [vendor_id], references: [id])
 
   @@index([number, status, comment, address, delivery_at, delivery_price, discount, total, user_id, company_id, vendor_id])
 }
@@ -113,4 +113,33 @@ model vendor {
   orders        order[]
 
   @@index([name, slug, payment, delivery, description, working_hours, rating])
+}
+
+model brand {
+  id         String    @id @default(uuid()) @db.Uuid
+  name       String
+  slug       String?
+  is_active  Boolean   @default(false)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  products   product[]
+
+  @@index([name, slug, is_active])
+}
+
+model product {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  slug        String?
+  description String
+  price       Decimal
+  photo       String?
+  weight      Int
+  is_active   Boolean  @default(false)
+  brand_id    String   @db.Uuid
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  brand       brand    @relation(fields: [brand_id], references: [id])
+
+  @@index([name, slug, description, price, photo, weight, is_active, brand_id])
 }
