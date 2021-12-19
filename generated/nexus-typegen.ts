@@ -20,6 +20,10 @@ export interface NexusGenInputs {
     name: string; // String!
     user_id: string; // String!
   }
+  CheckCodeInput: { // input type
+    code: string; // String!
+    phone: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -40,6 +44,10 @@ export interface NexusGenObjects {
   AddUserResult: { // root type
     message: string; // String!
   }
+  CheckCodeResult: { // root type
+    message: string; // String!
+    phoneConfirmation?: NexusGenRootTypes['PhoneConfirmation'] | null; // PhoneConfirmation
+  }
   Company: { // root type
     address: string; // String!
     code: string; // String!
@@ -48,6 +56,10 @@ export interface NexusGenObjects {
     name: string; // String!
     updated_at: string; // String!
     users: NexusGenRootTypes['User']; // User!
+  }
+  GenerateCodeResult: { // root type
+    code: string; // String!
+    message: string; // String!
   }
   GetCompaniesResult: { // root type
     companies?: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
@@ -62,6 +74,15 @@ export interface NexusGenObjects {
     user?: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: {};
+  PhoneConfirmation: { // root type
+    code: string; // String!
+    created_at: string; // String!
+    id: string; // String!
+    ip: string; // String!
+    phone: string; // String!
+    updated_at: string; // String!
+    used_at?: string | null; // String
+  }
   Query: {};
   User: { // root type
     allow_order: boolean; // Boolean!
@@ -91,6 +112,10 @@ export interface NexusGenFieldTypes {
   AddUserResult: { // field return type
     message: string; // String!
   }
+  CheckCodeResult: { // field return type
+    message: string; // String!
+    phoneConfirmation: NexusGenRootTypes['PhoneConfirmation'] | null; // PhoneConfirmation
+  }
   Company: { // field return type
     address: string; // String!
     code: string; // String!
@@ -99,6 +124,10 @@ export interface NexusGenFieldTypes {
     name: string; // String!
     updated_at: string; // String!
     users: NexusGenRootTypes['User']; // User!
+  }
+  GenerateCodeResult: { // field return type
+    code: string; // String!
+    message: string; // String!
   }
   GetCompaniesResult: { // field return type
     companies: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
@@ -115,8 +144,19 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     addCompany: NexusGenRootTypes['AddCompanyResult']; // AddCompanyResult!
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
+    generateCode: NexusGenRootTypes['GenerateCodeResult']; // GenerateCodeResult!
+  }
+  PhoneConfirmation: { // field return type
+    code: string; // String!
+    created_at: string; // String!
+    id: string; // String!
+    ip: string; // String!
+    phone: string; // String!
+    updated_at: string; // String!
+    used_at: string | null; // String
   }
   Query: { // field return type
+    checkCode: NexusGenRootTypes['CheckCodeResult']; // CheckCodeResult!
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
@@ -139,6 +179,10 @@ export interface NexusGenFieldTypeNames {
   AddUserResult: { // field return type name
     message: 'String'
   }
+  CheckCodeResult: { // field return type name
+    message: 'String'
+    phoneConfirmation: 'PhoneConfirmation'
+  }
   Company: { // field return type name
     address: 'String'
     code: 'String'
@@ -147,6 +191,10 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     updated_at: 'String'
     users: 'User'
+  }
+  GenerateCodeResult: { // field return type name
+    code: 'String'
+    message: 'String'
   }
   GetCompaniesResult: { // field return type name
     companies: 'Company'
@@ -163,8 +211,19 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     addCompany: 'AddCompanyResult'
     addUser: 'AddUserResult'
+    generateCode: 'GenerateCodeResult'
+  }
+  PhoneConfirmation: { // field return type name
+    code: 'String'
+    created_at: 'String'
+    id: 'String'
+    ip: 'String'
+    phone: 'String'
+    updated_at: 'String'
+    used_at: 'String'
   }
   Query: { // field return type name
+    checkCode: 'CheckCodeResult'
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
     getUser: 'GetUserResult'
@@ -188,8 +247,14 @@ export interface NexusGenArgTypes {
     addUser: { // args
       phone: string; // String!
     }
+    generateCode: { // args
+      phone: string; // String!
+    }
   }
   Query: {
+    checkCode: { // args
+      input: NexusGenInputs['CheckCodeInput']; // CheckCodeInput!
+    }
     getCompanies: { // args
       user_id: string; // String!
     }

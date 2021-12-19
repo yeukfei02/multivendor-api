@@ -17,6 +17,16 @@ type AddUserResult {
   message: String!
 }
 
+input CheckCodeInput {
+  code: String!
+  phone: String!
+}
+
+type CheckCodeResult {
+  message: String!
+  phoneConfirmation: PhoneConfirmation
+}
+
 type Company {
   address: String!
   code: String!
@@ -25,6 +35,11 @@ type Company {
   name: String!
   updated_at: String!
   users: User!
+}
+
+type GenerateCodeResult {
+  code: String!
+  message: String!
 }
 
 type GetCompaniesResult {
@@ -45,9 +60,21 @@ type GetUserResult {
 type Mutation {
   addCompany(input: AddCompanyInput!): AddCompanyResult!
   addUser(phone: String!): AddUserResult!
+  generateCode(phone: String!): GenerateCodeResult!
+}
+
+type PhoneConfirmation {
+  code: String!
+  created_at: String!
+  id: String!
+  ip: String!
+  phone: String!
+  updated_at: String!
+  used_at: String
 }
 
 type Query {
+  checkCode(input: CheckCodeInput!): CheckCodeResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getUser(phone: String!): GetUserResult!

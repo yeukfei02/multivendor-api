@@ -14,6 +14,7 @@ const server = new ApolloServer({
     const data = {
       event: event,
       context: context,
+      requestIp: event.requestContext.identity.sourceIp,
     };
     return data;
   },
