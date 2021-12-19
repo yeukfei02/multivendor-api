@@ -14,6 +14,12 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AddCompanyInput: { // input type
+    address: string; // String!
+    code: string; // String!
+    name: string; // String!
+    user_id: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -28,7 +34,27 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AddCompanyResult: { // root type
+    message: string; // String!
+  }
   AddUserResult: { // root type
+    message: string; // String!
+  }
+  Company: { // root type
+    address: string; // String!
+    code: string; // String!
+    created_at: string; // String!
+    id: string; // String!
+    name: string; // String!
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  GetCompaniesResult: { // root type
+    companies?: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
+    message: string; // String!
+  }
+  GetCompanyResult: { // root type
+    company?: NexusGenRootTypes['Company'] | null; // Company
     message: string; // String!
   }
   GetUserResult: { // root type
@@ -59,7 +85,27 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  AddCompanyResult: { // field return type
+    message: string; // String!
+  }
   AddUserResult: { // field return type
+    message: string; // String!
+  }
+  Company: { // field return type
+    address: string; // String!
+    code: string; // String!
+    created_at: string; // String!
+    id: string; // String!
+    name: string; // String!
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  GetCompaniesResult: { // field return type
+    companies: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
+    message: string; // String!
+  }
+  GetCompanyResult: { // field return type
+    company: NexusGenRootTypes['Company'] | null; // Company
     message: string; // String!
   }
   GetUserResult: { // field return type
@@ -67,9 +113,12 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
+    addCompany: NexusGenRootTypes['AddCompanyResult']; // AddCompanyResult!
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
   }
   Query: { // field return type
+    getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
+    getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
   }
   User: { // field return type
@@ -84,7 +133,27 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  AddCompanyResult: { // field return type name
+    message: 'String'
+  }
   AddUserResult: { // field return type name
+    message: 'String'
+  }
+  Company: { // field return type name
+    address: 'String'
+    code: 'String'
+    created_at: 'String'
+    id: 'String'
+    name: 'String'
+    updated_at: 'String'
+    users: 'User'
+  }
+  GetCompaniesResult: { // field return type name
+    companies: 'Company'
+    message: 'String'
+  }
+  GetCompanyResult: { // field return type name
+    company: 'Company'
     message: 'String'
   }
   GetUserResult: { // field return type name
@@ -92,9 +161,12 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    addCompany: 'AddCompanyResult'
     addUser: 'AddUserResult'
   }
   Query: { // field return type name
+    getCompanies: 'GetCompaniesResult'
+    getCompany: 'GetCompanyResult'
     getUser: 'GetUserResult'
   }
   User: { // field return type name
@@ -110,11 +182,20 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    addCompany: { // args
+      input: NexusGenInputs['AddCompanyInput']; // AddCompanyInput!
+    }
     addUser: { // args
       phone: string; // String!
     }
   }
   Query: {
+    getCompanies: { // args
+      user_id: string; // String!
+    }
+    getCompany: { // args
+      id: string; // String!
+    }
     getUser: { // args
       phone: string; // String!
     }
@@ -129,7 +210,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 

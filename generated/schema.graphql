@@ -2,7 +2,38 @@
 ### Do not make changes to this file directly
 
 
+input AddCompanyInput {
+  address: String!
+  code: String!
+  name: String!
+  user_id: String!
+}
+
+type AddCompanyResult {
+  message: String!
+}
+
 type AddUserResult {
+  message: String!
+}
+
+type Company {
+  address: String!
+  code: String!
+  created_at: String!
+  id: String!
+  name: String!
+  updated_at: String!
+  users: User!
+}
+
+type GetCompaniesResult {
+  companies: [Company]
+  message: String!
+}
+
+type GetCompanyResult {
+  company: Company
   message: String!
 }
 
@@ -12,10 +43,13 @@ type GetUserResult {
 }
 
 type Mutation {
+  addCompany(input: AddCompanyInput!): AddCompanyResult!
   addUser(phone: String!): AddUserResult!
 }
 
 type Query {
+  getCompanies(user_id: String!): GetCompaniesResult!
+  getCompany(id: String!): GetCompanyResult!
   getUser(phone: String!): GetUserResult!
 }
 
