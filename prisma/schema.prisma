@@ -17,7 +17,7 @@ model users {
   is_active          Boolean            @default(false)
   created_at         DateTime           @default(now())
   updated_at         DateTime           @default(now())
-  company            company?
+  companies          company[]
   delivery_addresses delivery_address[]
   last_events        last_event[]
   orders             order[]
@@ -53,7 +53,7 @@ model company {
   code       String
   name       String
   address    String
-  user_id    String?  @unique @db.Uuid
+  user_id    String?  @db.Uuid
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
   users      users?   @relation(fields: [user_id], references: [id])
