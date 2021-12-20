@@ -3,6 +3,8 @@ import { GetUserResult } from "../types/getUserResult";
 import { GetCompaniesResult } from "../types/getCompaniesResult";
 import { GetCompanyResult } from "../types/getCompanyResult";
 import { CheckCodeResult } from "../types/checkCodeResult";
+import { GetAddressesResult } from "../types/getAddressesResult";
+import { GetAddressResult } from "../types/getAddressResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
 
@@ -12,6 +14,10 @@ import {
   getCompanyControllerFunc,
 } from "../../controller/company";
 import { checkCodeControllerFunc } from "../../controller/phoneConfirmation";
+import {
+  getAddressesControllerFunc,
+  getAddressControllerFunc,
+} from "../../controller/deliveryAddress";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -35,4 +41,16 @@ export const checkCode = queryField("checkCode", {
   type: nonNull(CheckCodeResult),
   args: { input: nonNull(CheckCodeInput) },
   resolve: checkCodeControllerFunc,
+});
+
+export const getAddresses = queryField("getAddresses", {
+  type: nonNull(GetAddressesResult),
+  args: { user_id: nonNull(stringArg()) },
+  resolve: getAddressesControllerFunc,
+});
+
+export const getAddress = queryField("getAddress", {
+  type: nonNull(GetAddressResult),
+  args: { id: nonNull(stringArg()) },
+  resolve: getAddressControllerFunc,
 });

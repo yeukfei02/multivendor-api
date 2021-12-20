@@ -14,6 +14,13 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AddAddressInput: { // input type
+    address: string; // String!
+    comment: string; // String!
+    geo_code: string; // String!
+    phone: string; // String!
+    user_id: string; // String!
+  }
   AddCompanyInput: { // input type
     address: string; // String!
     code: string; // String!
@@ -38,6 +45,9 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AddAddressResult: { // root type
+    message: string; // String!
+  }
   AddCompanyResult: { // root type
     message: string; // String!
   }
@@ -57,8 +67,27 @@ export interface NexusGenObjects {
     updated_at: string; // String!
     users: NexusGenRootTypes['User']; // User!
   }
+  DeliveryAddress: { // root type
+    address: string; // String!
+    comment: string; // String!
+    created_at: string; // String!
+    geo_code: string; // String!
+    id: string; // String!
+    last_used?: string | null; // String
+    phone: string; // String!
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
   GenerateCodeResult: { // root type
     code: string; // String!
+    message: string; // String!
+  }
+  GetAddressResult: { // root type
+    deliveryAddress?: NexusGenRootTypes['DeliveryAddress'] | null; // DeliveryAddress
+    message: string; // String!
+  }
+  GetAddressesResult: { // root type
+    deliveryAddresses?: Array<NexusGenRootTypes['DeliveryAddress'] | null> | null; // [DeliveryAddress]
     message: string; // String!
   }
   GetCompaniesResult: { // root type
@@ -106,6 +135,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  AddAddressResult: { // field return type
+    message: string; // String!
+  }
   AddCompanyResult: { // field return type
     message: string; // String!
   }
@@ -125,8 +157,27 @@ export interface NexusGenFieldTypes {
     updated_at: string; // String!
     users: NexusGenRootTypes['User']; // User!
   }
+  DeliveryAddress: { // field return type
+    address: string; // String!
+    comment: string; // String!
+    created_at: string; // String!
+    geo_code: string; // String!
+    id: string; // String!
+    last_used: string | null; // String
+    phone: string; // String!
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
   GenerateCodeResult: { // field return type
     code: string; // String!
+    message: string; // String!
+  }
+  GetAddressResult: { // field return type
+    deliveryAddress: NexusGenRootTypes['DeliveryAddress'] | null; // DeliveryAddress
+    message: string; // String!
+  }
+  GetAddressesResult: { // field return type
+    deliveryAddresses: Array<NexusGenRootTypes['DeliveryAddress'] | null> | null; // [DeliveryAddress]
     message: string; // String!
   }
   GetCompaniesResult: { // field return type
@@ -142,6 +193,7 @@ export interface NexusGenFieldTypes {
     user: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: { // field return type
+    addAddress: NexusGenRootTypes['AddAddressResult']; // AddAddressResult!
     addCompany: NexusGenRootTypes['AddCompanyResult']; // AddCompanyResult!
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
     generateCode: NexusGenRootTypes['GenerateCodeResult']; // GenerateCodeResult!
@@ -157,6 +209,8 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     checkCode: NexusGenRootTypes['CheckCodeResult']; // CheckCodeResult!
+    getAddress: NexusGenRootTypes['GetAddressResult']; // GetAddressResult!
+    getAddresses: NexusGenRootTypes['GetAddressesResult']; // GetAddressesResult!
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
@@ -173,6 +227,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  AddAddressResult: { // field return type name
+    message: 'String'
+  }
   AddCompanyResult: { // field return type name
     message: 'String'
   }
@@ -192,8 +249,27 @@ export interface NexusGenFieldTypeNames {
     updated_at: 'String'
     users: 'User'
   }
+  DeliveryAddress: { // field return type name
+    address: 'String'
+    comment: 'String'
+    created_at: 'String'
+    geo_code: 'String'
+    id: 'String'
+    last_used: 'String'
+    phone: 'String'
+    updated_at: 'String'
+    users: 'User'
+  }
   GenerateCodeResult: { // field return type name
     code: 'String'
+    message: 'String'
+  }
+  GetAddressResult: { // field return type name
+    deliveryAddress: 'DeliveryAddress'
+    message: 'String'
+  }
+  GetAddressesResult: { // field return type name
+    deliveryAddresses: 'DeliveryAddress'
     message: 'String'
   }
   GetCompaniesResult: { // field return type name
@@ -209,6 +285,7 @@ export interface NexusGenFieldTypeNames {
     user: 'User'
   }
   Mutation: { // field return type name
+    addAddress: 'AddAddressResult'
     addCompany: 'AddCompanyResult'
     addUser: 'AddUserResult'
     generateCode: 'GenerateCodeResult'
@@ -224,6 +301,8 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     checkCode: 'CheckCodeResult'
+    getAddress: 'GetAddressResult'
+    getAddresses: 'GetAddressesResult'
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
     getUser: 'GetUserResult'
@@ -241,6 +320,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    addAddress: { // args
+      input: NexusGenInputs['AddAddressInput']; // AddAddressInput!
+    }
     addCompany: { // args
       input: NexusGenInputs['AddCompanyInput']; // AddCompanyInput!
     }
@@ -254,6 +336,12 @@ export interface NexusGenArgTypes {
   Query: {
     checkCode: { // args
       input: NexusGenInputs['CheckCodeInput']; // CheckCodeInput!
+    }
+    getAddress: { // args
+      id: string; // String!
+    }
+    getAddresses: { // args
+      user_id: string; // String!
     }
     getCompanies: { // args
       user_id: string; // String!
