@@ -2,6 +2,18 @@
 ### Do not make changes to this file directly
 
 
+input AddAddressInput {
+  address: String!
+  comment: String!
+  geo_code: String!
+  phone: String!
+  user_id: String!
+}
+
+type AddAddressResult {
+  message: String!
+}
+
 input AddCompanyInput {
   address: String!
   code: String!
@@ -37,8 +49,30 @@ type Company {
   users: User!
 }
 
+type DeliveryAddress {
+  address: String!
+  comment: String!
+  created_at: String!
+  geo_code: String!
+  id: String!
+  last_used: String
+  phone: String!
+  updated_at: String!
+  users: User!
+}
+
 type GenerateCodeResult {
   code: String!
+  message: String!
+}
+
+type GetAddressResult {
+  deliveryAddress: DeliveryAddress
+  message: String!
+}
+
+type GetAddressesResult {
+  deliveryAddresses: [DeliveryAddress]
   message: String!
 }
 
@@ -58,6 +92,7 @@ type GetUserResult {
 }
 
 type Mutation {
+  addAddress(input: AddAddressInput!): AddAddressResult!
   addCompany(input: AddCompanyInput!): AddCompanyResult!
   addUser(phone: String!): AddUserResult!
   generateCode(phone: String!): GenerateCodeResult!
@@ -75,6 +110,8 @@ type PhoneConfirmation {
 
 type Query {
   checkCode(input: CheckCodeInput!): CheckCodeResult!
+  getAddress(id: String!): GetAddressResult!
+  getAddresses(user_id: String!): GetAddressesResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getUser(phone: String!): GetUserResult!
