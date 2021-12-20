@@ -13,6 +13,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.0",
     "@types/uuid": "^8.3.3",
@@ -20,7 +21,9 @@
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
+    "faker": "^5.5.3",
     "git-cz": "^4.8.0",
+    "graphql-request": "^3.7.0",
     "husky": "^7.0.0",
     "jest": "^27.4.5",
     "prettier": "^2.5.1",
