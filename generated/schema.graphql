@@ -86,6 +86,11 @@ type GetCompanyResult {
   message: String!
 }
 
+type GetItemsResult {
+  message: String!
+  orderItems: [OrderItem]
+}
+
 type GetUserResult {
   message: String!
   user: User
@@ -98,6 +103,31 @@ type Mutation {
   generateCode(phone: String!): GenerateCodeResult!
 }
 
+type Order {
+  address: String!
+  comment: String
+  created_at: String!
+  deliver_at: String
+  delivery_price: Float
+  discount: Float
+  id: String!
+  number: Float!
+  status: String!
+  total: Float
+  updated_at: String!
+  users: User!
+}
+
+type OrderItem {
+  count: Int!
+  created_at: String!
+  id: String!
+  order: Order!
+  price: Float!
+  product: Product!
+  updated_at: String!
+}
+
 type PhoneConfirmation {
   code: String!
   created_at: String!
@@ -108,12 +138,24 @@ type PhoneConfirmation {
   used_at: String
 }
 
+type Product {
+  allow_order: Boolean!
+  created_at: String!
+  id: String!
+  is_active: Boolean!
+  phone: String!
+  phone_confirmed: Boolean!
+  type: String
+  updated_at: String!
+}
+
 type Query {
   checkCode(input: CheckCodeInput!): CheckCodeResult!
   getAddress(id: String!): GetAddressResult!
   getAddresses(user_id: String!): GetAddressesResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
+  getItems(order_id: String!): GetItemsResult!
   getUser(phone: String!): GetUserResult!
 }
 
