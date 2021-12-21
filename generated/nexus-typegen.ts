@@ -98,11 +98,38 @@ export interface NexusGenObjects {
     company?: NexusGenRootTypes['Company'] | null; // Company
     message: string; // String!
   }
+  GetItemsResult: { // root type
+    message: string; // String!
+    orderItems?: Array<NexusGenRootTypes['OrderItem'] | null> | null; // [OrderItem]
+  }
   GetUserResult: { // root type
     message: string; // String!
     user?: NexusGenRootTypes['User'] | null; // User
   }
   Mutation: {};
+  Order: { // root type
+    address: string; // String!
+    comment?: string | null; // String
+    created_at: string; // String!
+    deliver_at?: string | null; // String
+    delivery_price?: number | null; // Float
+    discount?: number | null; // Float
+    id: string; // String!
+    number: number; // Float!
+    status: string; // String!
+    total?: number | null; // Float
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  OrderItem: { // root type
+    count: number; // Int!
+    created_at: string; // String!
+    id: string; // String!
+    order: NexusGenRootTypes['Order']; // Order!
+    price: number; // Float!
+    product: NexusGenRootTypes['Product']; // Product!
+    updated_at: string; // String!
+  }
   PhoneConfirmation: { // root type
     code: string; // String!
     created_at: string; // String!
@@ -111,6 +138,16 @@ export interface NexusGenObjects {
     phone: string; // String!
     updated_at: string; // String!
     used_at?: string | null; // String
+  }
+  Product: { // root type
+    allow_order: boolean; // Boolean!
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    phone: string; // String!
+    phone_confirmed: boolean; // Boolean!
+    type?: string | null; // String
+    updated_at: string; // String!
   }
   Query: {};
   User: { // root type
@@ -188,6 +225,10 @@ export interface NexusGenFieldTypes {
     company: NexusGenRootTypes['Company'] | null; // Company
     message: string; // String!
   }
+  GetItemsResult: { // field return type
+    message: string; // String!
+    orderItems: Array<NexusGenRootTypes['OrderItem'] | null> | null; // [OrderItem]
+  }
   GetUserResult: { // field return type
     message: string; // String!
     user: NexusGenRootTypes['User'] | null; // User
@@ -198,6 +239,29 @@ export interface NexusGenFieldTypes {
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
     generateCode: NexusGenRootTypes['GenerateCodeResult']; // GenerateCodeResult!
   }
+  Order: { // field return type
+    address: string; // String!
+    comment: string | null; // String
+    created_at: string; // String!
+    deliver_at: string | null; // String
+    delivery_price: number | null; // Float
+    discount: number | null; // Float
+    id: string; // String!
+    number: number; // Float!
+    status: string; // String!
+    total: number | null; // Float
+    updated_at: string; // String!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  OrderItem: { // field return type
+    count: number; // Int!
+    created_at: string; // String!
+    id: string; // String!
+    order: NexusGenRootTypes['Order']; // Order!
+    price: number; // Float!
+    product: NexusGenRootTypes['Product']; // Product!
+    updated_at: string; // String!
+  }
   PhoneConfirmation: { // field return type
     code: string; // String!
     created_at: string; // String!
@@ -207,12 +271,23 @@ export interface NexusGenFieldTypes {
     updated_at: string; // String!
     used_at: string | null; // String
   }
+  Product: { // field return type
+    allow_order: boolean; // Boolean!
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    phone: string; // String!
+    phone_confirmed: boolean; // Boolean!
+    type: string | null; // String
+    updated_at: string; // String!
+  }
   Query: { // field return type
     checkCode: NexusGenRootTypes['CheckCodeResult']; // CheckCodeResult!
     getAddress: NexusGenRootTypes['GetAddressResult']; // GetAddressResult!
     getAddresses: NexusGenRootTypes['GetAddressesResult']; // GetAddressesResult!
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
+    getItems: NexusGenRootTypes['GetItemsResult']; // GetItemsResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
   }
   User: { // field return type
@@ -280,6 +355,10 @@ export interface NexusGenFieldTypeNames {
     company: 'Company'
     message: 'String'
   }
+  GetItemsResult: { // field return type name
+    message: 'String'
+    orderItems: 'OrderItem'
+  }
   GetUserResult: { // field return type name
     message: 'String'
     user: 'User'
@@ -290,6 +369,29 @@ export interface NexusGenFieldTypeNames {
     addUser: 'AddUserResult'
     generateCode: 'GenerateCodeResult'
   }
+  Order: { // field return type name
+    address: 'String'
+    comment: 'String'
+    created_at: 'String'
+    deliver_at: 'String'
+    delivery_price: 'Float'
+    discount: 'Float'
+    id: 'String'
+    number: 'Float'
+    status: 'String'
+    total: 'Float'
+    updated_at: 'String'
+    users: 'User'
+  }
+  OrderItem: { // field return type name
+    count: 'Int'
+    created_at: 'String'
+    id: 'String'
+    order: 'Order'
+    price: 'Float'
+    product: 'Product'
+    updated_at: 'String'
+  }
   PhoneConfirmation: { // field return type name
     code: 'String'
     created_at: 'String'
@@ -299,12 +401,23 @@ export interface NexusGenFieldTypeNames {
     updated_at: 'String'
     used_at: 'String'
   }
+  Product: { // field return type name
+    allow_order: 'Boolean'
+    created_at: 'String'
+    id: 'String'
+    is_active: 'Boolean'
+    phone: 'String'
+    phone_confirmed: 'Boolean'
+    type: 'String'
+    updated_at: 'String'
+  }
   Query: { // field return type name
     checkCode: 'CheckCodeResult'
     getAddress: 'GetAddressResult'
     getAddresses: 'GetAddressesResult'
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
+    getItems: 'GetItemsResult'
     getUser: 'GetUserResult'
   }
   User: { // field return type name
@@ -348,6 +461,9 @@ export interface NexusGenArgTypes {
     }
     getCompany: { // args
       id: string; // String!
+    }
+    getItems: { // args
+      order_id: string; // String!
     }
     getUser: { // args
       phone: string; // String!
