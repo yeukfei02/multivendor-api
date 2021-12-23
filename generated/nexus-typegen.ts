@@ -27,6 +27,19 @@ export interface NexusGenInputs {
     name: string; // String!
     user_id: string; // String!
   }
+  AddOrderInput: { // input type
+    address: string; // String!
+    comment?: string | null; // String
+    company_id: string; // String!
+    delivery_at?: string | null; // String
+    delivery_price?: number | null; // Float
+    discount?: number | null; // Float
+    number: number; // Int!
+    status: string; // String!
+    total?: number | null; // Float
+    user_id: string; // String!
+    vendor_id: string; // String!
+  }
   CheckCodeInput: { // input type
     code: string; // String!
     phone: string; // String!
@@ -49,6 +62,9 @@ export interface NexusGenObjects {
     message: string; // String!
   }
   AddCompanyResult: { // root type
+    message: string; // String!
+  }
+  AddOrderResult: { // root type
     message: string; // String!
   }
   AddUserResult: { // root type
@@ -102,6 +118,14 @@ export interface NexusGenObjects {
     message: string; // String!
     orderItems?: Array<NexusGenRootTypes['OrderItem'] | null> | null; // [OrderItem]
   }
+  GetOrderResult: { // root type
+    message: string; // String!
+    order?: NexusGenRootTypes['Order'] | null; // Order
+  }
+  GetOrdersResult: { // root type
+    message: string; // String!
+    orders?: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+  }
   GetUserResult: { // root type
     message: string; // String!
     user?: NexusGenRootTypes['User'] | null; // User
@@ -150,6 +174,9 @@ export interface NexusGenObjects {
     updated_at: string; // String!
   }
   Query: {};
+  RepeatOrderResult: { // root type
+    message: string; // String!
+  }
   User: { // root type
     allow_order: boolean; // Boolean!
     created_at: string; // String!
@@ -176,6 +203,9 @@ export interface NexusGenFieldTypes {
     message: string; // String!
   }
   AddCompanyResult: { // field return type
+    message: string; // String!
+  }
+  AddOrderResult: { // field return type
     message: string; // String!
   }
   AddUserResult: { // field return type
@@ -229,6 +259,14 @@ export interface NexusGenFieldTypes {
     message: string; // String!
     orderItems: Array<NexusGenRootTypes['OrderItem'] | null> | null; // [OrderItem]
   }
+  GetOrderResult: { // field return type
+    message: string; // String!
+    order: NexusGenRootTypes['Order'] | null; // Order
+  }
+  GetOrdersResult: { // field return type
+    message: string; // String!
+    orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+  }
   GetUserResult: { // field return type
     message: string; // String!
     user: NexusGenRootTypes['User'] | null; // User
@@ -236,8 +274,10 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     addAddress: NexusGenRootTypes['AddAddressResult']; // AddAddressResult!
     addCompany: NexusGenRootTypes['AddCompanyResult']; // AddCompanyResult!
+    addOrder: NexusGenRootTypes['AddOrderResult']; // AddOrderResult!
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
     generateCode: NexusGenRootTypes['GenerateCodeResult']; // GenerateCodeResult!
+    repeatOrder: NexusGenRootTypes['RepeatOrderResult']; // RepeatOrderResult!
   }
   Order: { // field return type
     address: string; // String!
@@ -288,7 +328,12 @@ export interface NexusGenFieldTypes {
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getItems: NexusGenRootTypes['GetItemsResult']; // GetItemsResult!
+    getOrder: NexusGenRootTypes['GetOrderResult']; // GetOrderResult!
+    getOrders: NexusGenRootTypes['GetOrdersResult']; // GetOrdersResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
+  }
+  RepeatOrderResult: { // field return type
+    message: string; // String!
   }
   User: { // field return type
     allow_order: boolean; // Boolean!
@@ -306,6 +351,9 @@ export interface NexusGenFieldTypeNames {
     message: 'String'
   }
   AddCompanyResult: { // field return type name
+    message: 'String'
+  }
+  AddOrderResult: { // field return type name
     message: 'String'
   }
   AddUserResult: { // field return type name
@@ -359,6 +407,14 @@ export interface NexusGenFieldTypeNames {
     message: 'String'
     orderItems: 'OrderItem'
   }
+  GetOrderResult: { // field return type name
+    message: 'String'
+    order: 'Order'
+  }
+  GetOrdersResult: { // field return type name
+    message: 'String'
+    orders: 'Order'
+  }
   GetUserResult: { // field return type name
     message: 'String'
     user: 'User'
@@ -366,8 +422,10 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     addAddress: 'AddAddressResult'
     addCompany: 'AddCompanyResult'
+    addOrder: 'AddOrderResult'
     addUser: 'AddUserResult'
     generateCode: 'GenerateCodeResult'
+    repeatOrder: 'RepeatOrderResult'
   }
   Order: { // field return type name
     address: 'String'
@@ -418,7 +476,12 @@ export interface NexusGenFieldTypeNames {
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
     getItems: 'GetItemsResult'
+    getOrder: 'GetOrderResult'
+    getOrders: 'GetOrdersResult'
     getUser: 'GetUserResult'
+  }
+  RepeatOrderResult: { // field return type name
+    message: 'String'
   }
   User: { // field return type name
     allow_order: 'Boolean'
@@ -439,11 +502,17 @@ export interface NexusGenArgTypes {
     addCompany: { // args
       input: NexusGenInputs['AddCompanyInput']; // AddCompanyInput!
     }
+    addOrder: { // args
+      input: NexusGenInputs['AddOrderInput']; // AddOrderInput!
+    }
     addUser: { // args
       phone: string; // String!
     }
     generateCode: { // args
       phone: string; // String!
+    }
+    repeatOrder: { // args
+      id: string; // String!
     }
   }
   Query: {
@@ -464,6 +533,12 @@ export interface NexusGenArgTypes {
     }
     getItems: { // args
       order_id: string; // String!
+    }
+    getOrder: { // args
+      id: string; // String!
+    }
+    getOrders: { // args
+      user_id: string; // String!
     }
     getUser: { // args
       phone: string; // String!
