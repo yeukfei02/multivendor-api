@@ -130,6 +130,7 @@ type Mutation {
   addOrder(input: AddOrderInput!): AddOrderResult!
   addUser(phone: String!): AddUserResult!
   generateCode(phone: String!): GenerateCodeResult!
+  repeatOrder(id: String!): RepeatOrderResult!
 }
 
 type Order {
@@ -188,6 +189,10 @@ type Query {
   getOrder(id: String!): GetOrderResult!
   getOrders(user_id: String!): GetOrdersResult!
   getUser(phone: String!): GetUserResult!
+}
+
+type RepeatOrderResult {
+  message: String!
 }
 
 type User {

@@ -174,6 +174,9 @@ export interface NexusGenObjects {
     updated_at: string; // String!
   }
   Query: {};
+  RepeatOrderResult: { // root type
+    message: string; // String!
+  }
   User: { // root type
     allow_order: boolean; // Boolean!
     created_at: string; // String!
@@ -274,6 +277,7 @@ export interface NexusGenFieldTypes {
     addOrder: NexusGenRootTypes['AddOrderResult']; // AddOrderResult!
     addUser: NexusGenRootTypes['AddUserResult']; // AddUserResult!
     generateCode: NexusGenRootTypes['GenerateCodeResult']; // GenerateCodeResult!
+    repeatOrder: NexusGenRootTypes['RepeatOrderResult']; // RepeatOrderResult!
   }
   Order: { // field return type
     address: string; // String!
@@ -327,6 +331,9 @@ export interface NexusGenFieldTypes {
     getOrder: NexusGenRootTypes['GetOrderResult']; // GetOrderResult!
     getOrders: NexusGenRootTypes['GetOrdersResult']; // GetOrdersResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
+  }
+  RepeatOrderResult: { // field return type
+    message: string; // String!
   }
   User: { // field return type
     allow_order: boolean; // Boolean!
@@ -418,6 +425,7 @@ export interface NexusGenFieldTypeNames {
     addOrder: 'AddOrderResult'
     addUser: 'AddUserResult'
     generateCode: 'GenerateCodeResult'
+    repeatOrder: 'RepeatOrderResult'
   }
   Order: { // field return type name
     address: 'String'
@@ -472,6 +480,9 @@ export interface NexusGenFieldTypeNames {
     getOrders: 'GetOrdersResult'
     getUser: 'GetUserResult'
   }
+  RepeatOrderResult: { // field return type name
+    message: 'String'
+  }
   User: { // field return type name
     allow_order: 'Boolean'
     created_at: 'String'
@@ -499,6 +510,9 @@ export interface NexusGenArgTypes {
     }
     generateCode: { // args
       phone: string; // String!
+    }
+    repeatOrder: { // args
+      id: string; // String!
     }
   }
   Query: {

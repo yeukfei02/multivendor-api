@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { addOrder, getOrders, getOrder } from "../services/order";
 
 export const addOrderControllerFunc = async (
@@ -39,6 +40,40 @@ export const addOrderControllerFunc = async (
 
   const response = {
     message: "addOrder",
+  };
+  return response;
+};
+
+export const repeatOrderControllerFunc = async (
+  parent: any,
+  args: any,
+  context: any,
+  info: any
+) => {
+  if (args && args.id) {
+    const id = args.id;
+    const order = await getOrder(id);
+    if (order) {
+      await addOrder(
+        order.number,
+        order.status,
+        order.comment ? order.comment : "",
+        order.address,
+        order.delivery_at
+          ? order.delivery_at.toLocaleDateString()
+          : dayjs().format(),
+        order.delivery_price ? order.delivery_price.toNumber() : 0,
+        order.discount ? order.discount.toNumber() : 0,
+        order.total ? order.total.toNumber() : 0,
+        order.user_id,
+        order.company_id,
+        order.vendor_id
+      );
+    }
+  }
+
+  const response = {
+    message: "repeatOrder",
   };
   return response;
 };
