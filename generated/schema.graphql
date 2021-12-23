@@ -25,6 +25,24 @@ type AddCompanyResult {
   message: String!
 }
 
+input AddOrderInput {
+  address: String!
+  comment: String
+  company_id: String!
+  delivery_at: String
+  delivery_price: Float
+  discount: Float
+  number: Int!
+  status: String!
+  total: Float
+  user_id: String!
+  vendor_id: String!
+}
+
+type AddOrderResult {
+  message: String!
+}
+
 type AddUserResult {
   message: String!
 }
@@ -91,6 +109,16 @@ type GetItemsResult {
   orderItems: [OrderItem]
 }
 
+type GetOrderResult {
+  message: String!
+  order: Order
+}
+
+type GetOrdersResult {
+  message: String!
+  orders: [Order]
+}
+
 type GetUserResult {
   message: String!
   user: User
@@ -99,6 +127,7 @@ type GetUserResult {
 type Mutation {
   addAddress(input: AddAddressInput!): AddAddressResult!
   addCompany(input: AddCompanyInput!): AddCompanyResult!
+  addOrder(input: AddOrderInput!): AddOrderResult!
   addUser(phone: String!): AddUserResult!
   generateCode(phone: String!): GenerateCodeResult!
 }
@@ -156,6 +185,8 @@ type Query {
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getItems(order_id: String!): GetItemsResult!
+  getOrder(id: String!): GetOrderResult!
+  getOrders(user_id: String!): GetOrdersResult!
   getUser(phone: String!): GetUserResult!
 }
 

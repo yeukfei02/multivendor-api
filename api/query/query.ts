@@ -6,6 +6,8 @@ import { CheckCodeResult } from "../types/checkCodeResult";
 import { GetAddressesResult } from "../types/getAddressesResult";
 import { GetAddressResult } from "../types/getAddressResult";
 import { GetItemsResult } from "../types/getItemsResult";
+import { GetOrdersResult } from "../types/getOrdersResult";
+import { GetOrderResult } from "../types/getOrderResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
 
@@ -20,6 +22,10 @@ import {
   getAddressControllerFunc,
 } from "../../controller/deliveryAddress";
 import { getItemsControllerFunc } from "../../controller/orderItem";
+import {
+  getOrdersControllerFunc,
+  getOrderControllerFunc,
+} from "../../controller/order";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -61,4 +67,16 @@ export const getItems = queryField("getItems", {
   type: nonNull(GetItemsResult),
   args: { order_id: nonNull(stringArg()) },
   resolve: getItemsControllerFunc,
+});
+
+export const getOrders = queryField("getOrders", {
+  type: nonNull(GetOrdersResult),
+  args: { user_id: nonNull(stringArg()) },
+  resolve: getOrdersControllerFunc,
+});
+
+export const getOrder = queryField("getOrder", {
+  type: nonNull(GetOrderResult),
+  args: { id: nonNull(stringArg()) },
+  resolve: getOrderControllerFunc,
 });
