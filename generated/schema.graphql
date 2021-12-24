@@ -47,6 +47,16 @@ type AddUserResult {
   message: String!
 }
 
+type Brand {
+  created_at: String!
+  id: String!
+  is_active: Boolean!
+  name: String!
+  products: [Product]
+  slug: String
+  updated_at: String!
+}
+
 input CheckCodeInput {
   code: String!
   phone: String!
@@ -94,6 +104,11 @@ type GetAddressesResult {
   message: String!
 }
 
+type GetBrandResult {
+  brand: Brand
+  message: String!
+}
+
 type GetCompaniesResult {
   companies: [Company]
   message: String!
@@ -122,6 +137,11 @@ type GetOrdersResult {
 type GetUserResult {
   message: String!
   user: User
+}
+
+type GetVendorResult {
+  message: String!
+  vendor: Vendor
 }
 
 type Mutation {
@@ -183,12 +203,14 @@ type Query {
   checkCode(input: CheckCodeInput!): CheckCodeResult!
   getAddress(id: String!): GetAddressResult!
   getAddresses(user_id: String!): GetAddressesResult!
+  getBrand(id: String!): GetBrandResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getItems(order_id: String!): GetItemsResult!
   getOrder(id: String!): GetOrderResult!
   getOrders(user_id: String!): GetOrdersResult!
   getUser(phone: String!): GetUserResult!
+  getVendor(id: String!): GetVendorResult!
 }
 
 type RepeatOrderResult {
@@ -203,4 +225,30 @@ type User {
   phone: String!
   phone_confirmed: Boolean!
   updated_at: String!
+}
+
+type Vendor {
+  created_at: String!
+  delivery: String!
+  description: String!
+  id: String!
+  name: String!
+  orders: [Order]
+  payment: String!
+  rating: Int!
+  slug: String
+  updated_at: String!
+  vendor_products: [VendorProduct]
+  working_hours: Int!
+}
+
+type VendorProduct {
+  created_at: String!
+  id: String!
+  min_count: Int!
+  price: Float!
+  product: Product
+  unit: Int!
+  updated_at: String!
+  vendor: Vendor
 }

@@ -70,6 +70,15 @@ export interface NexusGenObjects {
   AddUserResult: { // root type
     message: string; // String!
   }
+  Brand: { // root type
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    name: string; // String!
+    products?: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    slug?: string | null; // String
+    updated_at: string; // String!
+  }
   CheckCodeResult: { // root type
     message: string; // String!
     phoneConfirmation?: NexusGenRootTypes['PhoneConfirmation'] | null; // PhoneConfirmation
@@ -106,6 +115,10 @@ export interface NexusGenObjects {
     deliveryAddresses?: Array<NexusGenRootTypes['DeliveryAddress'] | null> | null; // [DeliveryAddress]
     message: string; // String!
   }
+  GetBrandResult: { // root type
+    brand?: NexusGenRootTypes['Brand'] | null; // Brand
+    message: string; // String!
+  }
   GetCompaniesResult: { // root type
     companies?: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
     message: string; // String!
@@ -129,6 +142,10 @@ export interface NexusGenObjects {
   GetUserResult: { // root type
     message: string; // String!
     user?: NexusGenRootTypes['User'] | null; // User
+  }
+  GetVendorResult: { // root type
+    message: string; // String!
+    vendor?: NexusGenRootTypes['Vendor'] | null; // Vendor
   }
   Mutation: {};
   Order: { // root type
@@ -186,6 +203,30 @@ export interface NexusGenObjects {
     phone_confirmed: boolean; // Boolean!
     updated_at: string; // String!
   }
+  Vendor: { // root type
+    created_at: string; // String!
+    delivery: string; // String!
+    description: string; // String!
+    id: string; // String!
+    name: string; // String!
+    orders?: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+    payment: string; // String!
+    rating: number; // Int!
+    slug?: string | null; // String
+    updated_at: string; // String!
+    vendor_products?: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+    working_hours: number; // Int!
+  }
+  VendorProduct: { // root type
+    created_at: string; // String!
+    id: string; // String!
+    min_count: number; // Int!
+    price: number; // Float!
+    product?: NexusGenRootTypes['Product'] | null; // Product
+    unit: number; // Int!
+    updated_at: string; // String!
+    vendor?: NexusGenRootTypes['Vendor'] | null; // Vendor
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -210,6 +251,15 @@ export interface NexusGenFieldTypes {
   }
   AddUserResult: { // field return type
     message: string; // String!
+  }
+  Brand: { // field return type
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    name: string; // String!
+    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    slug: string | null; // String
+    updated_at: string; // String!
   }
   CheckCodeResult: { // field return type
     message: string; // String!
@@ -247,6 +297,10 @@ export interface NexusGenFieldTypes {
     deliveryAddresses: Array<NexusGenRootTypes['DeliveryAddress'] | null> | null; // [DeliveryAddress]
     message: string; // String!
   }
+  GetBrandResult: { // field return type
+    brand: NexusGenRootTypes['Brand'] | null; // Brand
+    message: string; // String!
+  }
   GetCompaniesResult: { // field return type
     companies: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
     message: string; // String!
@@ -270,6 +324,10 @@ export interface NexusGenFieldTypes {
   GetUserResult: { // field return type
     message: string; // String!
     user: NexusGenRootTypes['User'] | null; // User
+  }
+  GetVendorResult: { // field return type
+    message: string; // String!
+    vendor: NexusGenRootTypes['Vendor'] | null; // Vendor
   }
   Mutation: { // field return type
     addAddress: NexusGenRootTypes['AddAddressResult']; // AddAddressResult!
@@ -325,12 +383,14 @@ export interface NexusGenFieldTypes {
     checkCode: NexusGenRootTypes['CheckCodeResult']; // CheckCodeResult!
     getAddress: NexusGenRootTypes['GetAddressResult']; // GetAddressResult!
     getAddresses: NexusGenRootTypes['GetAddressesResult']; // GetAddressesResult!
+    getBrand: NexusGenRootTypes['GetBrandResult']; // GetBrandResult!
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getItems: NexusGenRootTypes['GetItemsResult']; // GetItemsResult!
     getOrder: NexusGenRootTypes['GetOrderResult']; // GetOrderResult!
     getOrders: NexusGenRootTypes['GetOrdersResult']; // GetOrdersResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
+    getVendor: NexusGenRootTypes['GetVendorResult']; // GetVendorResult!
   }
   RepeatOrderResult: { // field return type
     message: string; // String!
@@ -343,6 +403,30 @@ export interface NexusGenFieldTypes {
     phone: string; // String!
     phone_confirmed: boolean; // Boolean!
     updated_at: string; // String!
+  }
+  Vendor: { // field return type
+    created_at: string; // String!
+    delivery: string; // String!
+    description: string; // String!
+    id: string; // String!
+    name: string; // String!
+    orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
+    payment: string; // String!
+    rating: number; // Int!
+    slug: string | null; // String
+    updated_at: string; // String!
+    vendor_products: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+    working_hours: number; // Int!
+  }
+  VendorProduct: { // field return type
+    created_at: string; // String!
+    id: string; // String!
+    min_count: number; // Int!
+    price: number; // Float!
+    product: NexusGenRootTypes['Product'] | null; // Product
+    unit: number; // Int!
+    updated_at: string; // String!
+    vendor: NexusGenRootTypes['Vendor'] | null; // Vendor
   }
 }
 
@@ -358,6 +442,15 @@ export interface NexusGenFieldTypeNames {
   }
   AddUserResult: { // field return type name
     message: 'String'
+  }
+  Brand: { // field return type name
+    created_at: 'String'
+    id: 'String'
+    is_active: 'Boolean'
+    name: 'String'
+    products: 'Product'
+    slug: 'String'
+    updated_at: 'String'
   }
   CheckCodeResult: { // field return type name
     message: 'String'
@@ -395,6 +488,10 @@ export interface NexusGenFieldTypeNames {
     deliveryAddresses: 'DeliveryAddress'
     message: 'String'
   }
+  GetBrandResult: { // field return type name
+    brand: 'Brand'
+    message: 'String'
+  }
   GetCompaniesResult: { // field return type name
     companies: 'Company'
     message: 'String'
@@ -418,6 +515,10 @@ export interface NexusGenFieldTypeNames {
   GetUserResult: { // field return type name
     message: 'String'
     user: 'User'
+  }
+  GetVendorResult: { // field return type name
+    message: 'String'
+    vendor: 'Vendor'
   }
   Mutation: { // field return type name
     addAddress: 'AddAddressResult'
@@ -473,12 +574,14 @@ export interface NexusGenFieldTypeNames {
     checkCode: 'CheckCodeResult'
     getAddress: 'GetAddressResult'
     getAddresses: 'GetAddressesResult'
+    getBrand: 'GetBrandResult'
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
     getItems: 'GetItemsResult'
     getOrder: 'GetOrderResult'
     getOrders: 'GetOrdersResult'
     getUser: 'GetUserResult'
+    getVendor: 'GetVendorResult'
   }
   RepeatOrderResult: { // field return type name
     message: 'String'
@@ -491,6 +594,30 @@ export interface NexusGenFieldTypeNames {
     phone: 'String'
     phone_confirmed: 'Boolean'
     updated_at: 'String'
+  }
+  Vendor: { // field return type name
+    created_at: 'String'
+    delivery: 'String'
+    description: 'String'
+    id: 'String'
+    name: 'String'
+    orders: 'Order'
+    payment: 'String'
+    rating: 'Int'
+    slug: 'String'
+    updated_at: 'String'
+    vendor_products: 'VendorProduct'
+    working_hours: 'Int'
+  }
+  VendorProduct: { // field return type name
+    created_at: 'String'
+    id: 'String'
+    min_count: 'Int'
+    price: 'Float'
+    product: 'Product'
+    unit: 'Int'
+    updated_at: 'String'
+    vendor: 'Vendor'
   }
 }
 
@@ -525,6 +652,9 @@ export interface NexusGenArgTypes {
     getAddresses: { // args
       user_id: string; // String!
     }
+    getBrand: { // args
+      id: string; // String!
+    }
     getCompanies: { // args
       user_id: string; // String!
     }
@@ -542,6 +672,9 @@ export interface NexusGenArgTypes {
     }
     getUser: { // args
       phone: string; // String!
+    }
+    getVendor: { // args
+      id: string; // String!
     }
   }
 }

@@ -8,6 +8,8 @@ import { GetAddressResult } from "../types/getAddressResult";
 import { GetItemsResult } from "../types/getItemsResult";
 import { GetOrdersResult } from "../types/getOrdersResult";
 import { GetOrderResult } from "../types/getOrderResult";
+import { GetBrandResult } from "../types/getBrandResult";
+import { GetVendorResult } from "../types/getVendorResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
 
@@ -26,6 +28,8 @@ import {
   getOrdersControllerFunc,
   getOrderControllerFunc,
 } from "../../controller/order";
+import { getBrandControllerFunc } from "../../controller/brand";
+import { getVendorControllerFunc } from "../../controller/vendor";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -79,4 +83,16 @@ export const getOrder = queryField("getOrder", {
   type: nonNull(GetOrderResult),
   args: { id: nonNull(stringArg()) },
   resolve: getOrderControllerFunc,
+});
+
+export const getBrand = queryField("getBrand", {
+  type: nonNull(GetBrandResult),
+  args: { id: nonNull(stringArg()) },
+  resolve: getBrandControllerFunc,
+});
+
+export const getVendor = queryField("getVendor", {
+  type: nonNull(GetVendorResult),
+  args: { id: nonNull(stringArg()) },
+  resolve: getVendorControllerFunc,
 });
