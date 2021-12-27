@@ -9,6 +9,7 @@ import { addressTest } from "./address";
 // import { vendorProductTest } from "./vendorProduct";
 // import { categoryTest } from "./category";
 // import { categoryProductTest } from "./categoryProduct";
+// import { productTest } from "./product";
 
 describe("multivendor api test", () => {
   userTest();
@@ -22,4 +23,5 @@ describe("multivendor api test", () => {
   // vendorProductTest();
   // categoryTest();
   // categoryProductTest();
+  // productTest();
 });
