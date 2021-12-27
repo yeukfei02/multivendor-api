@@ -137,6 +137,11 @@ type GetCategoriesResult {
   message: String!
 }
 
+type GetCategoryProductsResult {
+  categoryProducts: [CategoryProduct]
+  message: String!
+}
+
 type GetCategoryResult {
   category: Category
   message: String!
@@ -175,6 +180,11 @@ type GetProductVendorsResult {
 type GetSubCategoriesResult {
   message: String!
   subCategories: [Category]
+}
+
+type GetSubCategoryProductsResult {
+  message: String!
+  subCategoryProducts: [CategoryProduct]
 }
 
 type GetUserResult {
@@ -259,6 +269,7 @@ type Query {
   getBrand(id: String!): GetBrandResult!
   getCategories: GetCategoriesResult!
   getCategory(id: String!): GetCategoryResult!
+  getCategoryProducts(category_id: String!): GetCategoryProductsResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getItems(order_id: String!): GetItemsResult!
@@ -266,6 +277,7 @@ type Query {
   getOrders(user_id: String!): GetOrdersResult!
   getProductVendors(input: ProductVendorsInput!): GetProductVendorsResult!
   getSubCategories(sub_id: String!): GetSubCategoriesResult!
+  getSubCategoryProducts(sub_id: String!): GetSubCategoryProductsResult!
   getUser(phone: String!): GetUserResult!
   getVendor(id: String!): GetVendorResult!
   getVendorProducts(input: VendorProductsInput!): GetVendorProductsResult!

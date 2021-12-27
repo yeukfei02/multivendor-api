@@ -15,6 +15,8 @@ import { GetVendorProductsResult } from "../types/getVendorProductsResult";
 import { GetCategoriesResult } from "../types/getCategoriesResult";
 import { GetCategoryResult } from "../types/getCategoryResult";
 import { GetSubCategoriesResult } from "../types/getSubCategoriesResult";
+import { GetCategoryProductsResult } from "../types/getCategoryProductsResult";
+import { GetSubCategoryProductsResult } from "../types/getSubCategoryProductsResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
 import { ProductVendorsInput } from "../input/productVendorsInput";
@@ -46,6 +48,10 @@ import {
   getCategoryControllerFunc,
   getSubCategoriesControllerFunc,
 } from "../../controller/category";
+import {
+  getCategoryProductsControllerFunc,
+  getSubCategoryProductsControllerFunc,
+} from "../../controller/categoryProduct";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -141,4 +147,16 @@ export const getSubCategories = queryField("getSubCategories", {
   type: nonNull(GetSubCategoriesResult),
   args: { sub_id: nonNull(stringArg()) },
   resolve: getSubCategoriesControllerFunc,
+});
+
+export const getCategoryProducts = queryField("getCategoryProducts", {
+  type: nonNull(GetCategoryProductsResult),
+  args: { category_id: nonNull(stringArg()) },
+  resolve: getCategoryProductsControllerFunc,
+});
+
+export const getSubCategoryProducts = queryField("getSubCategoryProducts", {
+  type: nonNull(GetSubCategoryProductsResult),
+  args: { sub_id: nonNull(stringArg()) },
+  resolve: getSubCategoryProductsControllerFunc,
 });
