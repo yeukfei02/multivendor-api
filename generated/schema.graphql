@@ -57,6 +57,29 @@ type Brand {
   updated_at: String!
 }
 
+type Category {
+  categoryProducts: [CategoryProduct]
+  created_at: String!
+  icon: String
+  id: String!
+  is_active: Boolean!
+  name: String!
+  priority: Int
+  slug: String
+  sub_id: String!
+  updated_at: String!
+}
+
+type CategoryProduct {
+  categories: [Category]
+  created_at: String!
+  id: String!
+  is_active: Boolean!
+  products: [Product]
+  sub_id: String!
+  updated_at: String!
+}
+
 input CheckCodeInput {
   code: String!
   phone: String!
@@ -109,6 +132,16 @@ type GetBrandResult {
   message: String!
 }
 
+type GetCategoriesResult {
+  categories: [Category]
+  message: String!
+}
+
+type GetCategoryResult {
+  category: Category
+  message: String!
+}
+
 type GetCompaniesResult {
   companies: [Company]
   message: String!
@@ -137,6 +170,11 @@ type GetOrdersResult {
 type GetProductVendorsResult {
   message: String!
   productVendors: [VendorProduct]
+}
+
+type GetSubCategoriesResult {
+  message: String!
+  subCategories: [Category]
 }
 
 type GetUserResult {
@@ -219,12 +257,15 @@ type Query {
   getAddress(id: String!): GetAddressResult!
   getAddresses(user_id: String!): GetAddressesResult!
   getBrand(id: String!): GetBrandResult!
+  getCategories: GetCategoriesResult!
+  getCategory(id: String!): GetCategoryResult!
   getCompanies(user_id: String!): GetCompaniesResult!
   getCompany(id: String!): GetCompanyResult!
   getItems(order_id: String!): GetItemsResult!
   getOrder(id: String!): GetOrderResult!
   getOrders(user_id: String!): GetOrdersResult!
   getProductVendors(input: ProductVendorsInput!): GetProductVendorsResult!
+  getSubCategories(sub_id: String!): GetSubCategoriesResult!
   getUser(phone: String!): GetUserResult!
   getVendor(id: String!): GetVendorResult!
   getVendorProducts(input: VendorProductsInput!): GetVendorProductsResult!
