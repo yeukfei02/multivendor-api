@@ -177,9 +177,19 @@ type GetOrdersResult {
   orders: [Order]
 }
 
+type GetProductCategoriesResult {
+  message: String!
+  productCategories: [Product]
+}
+
 type GetProductResult {
   message: String!
   product: Product
+}
+
+type GetProductSubCategoriesResult {
+  message: String!
+  productSubCategories: [Product]
 }
 
 type GetProductVendorsResult {
@@ -291,6 +301,8 @@ type Query {
   getOrder(id: String!): GetOrderResult!
   getOrders(user_id: String!): GetOrdersResult!
   getProduct(id: String!): GetProductResult!
+  getProductCategories(category_id: String!): GetProductCategoriesResult!
+  getProductSubCategories(sub_id: String!): GetProductSubCategoriesResult!
   getProductVendors(input: ProductVendorsInput!): GetProductVendorsResult!
   getSubCategories(sub_id: String!): GetSubCategoriesResult!
   getSubCategoryProducts(sub_id: String!): GetSubCategoryProductsResult!
