@@ -6,6 +6,7 @@ import { addressTest } from "./address";
 // import { orderTest } from "./order";
 // import { brandTest } from "./brand";
 // import { vendorTest } from "./vendor";
+// import { vendorProductTest } from "./vendorProduct";
 
 describe("multivendor api test", () => {
   userTest();
@@ -16,4 +17,5 @@ describe("multivendor api test", () => {
   // orderTest();
   // brandTest();
   // vendorTest();
+  // vendorProductTest();
 });
