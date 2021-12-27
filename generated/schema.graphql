@@ -134,9 +134,19 @@ type GetOrdersResult {
   orders: [Order]
 }
 
+type GetProductVendorsResult {
+  message: String!
+  productVendors: [VendorProduct]
+}
+
 type GetUserResult {
   message: String!
   user: User
+}
+
+type GetVendorProductsResult {
+  message: String!
+  vendorProducts: [VendorProduct]
 }
 
 type GetVendorResult {
@@ -199,6 +209,11 @@ type Product {
   updated_at: String!
 }
 
+input ProductVendorsInput {
+  product_id: String!
+  vendor_id: String!
+}
+
 type Query {
   checkCode(input: CheckCodeInput!): CheckCodeResult!
   getAddress(id: String!): GetAddressResult!
@@ -209,8 +224,10 @@ type Query {
   getItems(order_id: String!): GetItemsResult!
   getOrder(id: String!): GetOrderResult!
   getOrders(user_id: String!): GetOrdersResult!
+  getProductVendors(input: ProductVendorsInput!): GetProductVendorsResult!
   getUser(phone: String!): GetUserResult!
   getVendor(id: String!): GetVendorResult!
+  getVendorProducts(input: VendorProductsInput!): GetVendorProductsResult!
 }
 
 type RepeatOrderResult {
@@ -251,4 +268,10 @@ type VendorProduct {
   unit: Int!
   updated_at: String!
   vendor: Vendor
+}
+
+input VendorProductsInput {
+  category_id: String!
+  sub_id: String!
+  vendor_id: String!
 }
