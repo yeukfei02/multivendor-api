@@ -88,6 +88,27 @@ export interface NexusGenObjects {
     slug?: string | null; // String
     updated_at: string; // String!
   }
+  Category: { // root type
+    categoryProducts?: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
+    created_at: string; // String!
+    icon?: string | null; // String
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    name: string; // String!
+    priority?: number | null; // Int
+    slug?: string | null; // String
+    sub_id: string; // String!
+    updated_at: string; // String!
+  }
+  CategoryProduct: { // root type
+    categories?: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    products?: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    sub_id: string; // String!
+    updated_at: string; // String!
+  }
   CheckCodeResult: { // root type
     message: string; // String!
     phoneConfirmation?: NexusGenRootTypes['PhoneConfirmation'] | null; // PhoneConfirmation
@@ -128,6 +149,18 @@ export interface NexusGenObjects {
     brand?: NexusGenRootTypes['Brand'] | null; // Brand
     message: string; // String!
   }
+  GetCategoriesResult: { // root type
+    categories?: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    message: string; // String!
+  }
+  GetCategoryProductsResult: { // root type
+    categoryProducts?: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
+    message: string; // String!
+  }
+  GetCategoryResult: { // root type
+    category?: NexusGenRootTypes['Category'] | null; // Category
+    message: string; // String!
+  }
   GetCompaniesResult: { // root type
     companies?: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
     message: string; // String!
@@ -151,6 +184,14 @@ export interface NexusGenObjects {
   GetProductVendorsResult: { // root type
     message: string; // String!
     productVendors?: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+  }
+  GetSubCategoriesResult: { // root type
+    message: string; // String!
+    subCategories?: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+  }
+  GetSubCategoryProductsResult: { // root type
+    message: string; // String!
+    subCategoryProducts?: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
   }
   GetUserResult: { // root type
     message: string; // String!
@@ -278,6 +319,27 @@ export interface NexusGenFieldTypes {
     slug: string | null; // String
     updated_at: string; // String!
   }
+  Category: { // field return type
+    categoryProducts: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
+    created_at: string; // String!
+    icon: string | null; // String
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    name: string; // String!
+    priority: number | null; // Int
+    slug: string | null; // String
+    sub_id: string; // String!
+    updated_at: string; // String!
+  }
+  CategoryProduct: { // field return type
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    created_at: string; // String!
+    id: string; // String!
+    is_active: boolean; // Boolean!
+    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    sub_id: string; // String!
+    updated_at: string; // String!
+  }
   CheckCodeResult: { // field return type
     message: string; // String!
     phoneConfirmation: NexusGenRootTypes['PhoneConfirmation'] | null; // PhoneConfirmation
@@ -318,6 +380,18 @@ export interface NexusGenFieldTypes {
     brand: NexusGenRootTypes['Brand'] | null; // Brand
     message: string; // String!
   }
+  GetCategoriesResult: { // field return type
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    message: string; // String!
+  }
+  GetCategoryProductsResult: { // field return type
+    categoryProducts: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
+    message: string; // String!
+  }
+  GetCategoryResult: { // field return type
+    category: NexusGenRootTypes['Category'] | null; // Category
+    message: string; // String!
+  }
   GetCompaniesResult: { // field return type
     companies: Array<NexusGenRootTypes['Company'] | null> | null; // [Company]
     message: string; // String!
@@ -341,6 +415,14 @@ export interface NexusGenFieldTypes {
   GetProductVendorsResult: { // field return type
     message: string; // String!
     productVendors: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+  }
+  GetSubCategoriesResult: { // field return type
+    message: string; // String!
+    subCategories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+  }
+  GetSubCategoryProductsResult: { // field return type
+    message: string; // String!
+    subCategoryProducts: Array<NexusGenRootTypes['CategoryProduct'] | null> | null; // [CategoryProduct]
   }
   GetUserResult: { // field return type
     message: string; // String!
@@ -409,12 +491,17 @@ export interface NexusGenFieldTypes {
     getAddress: NexusGenRootTypes['GetAddressResult']; // GetAddressResult!
     getAddresses: NexusGenRootTypes['GetAddressesResult']; // GetAddressesResult!
     getBrand: NexusGenRootTypes['GetBrandResult']; // GetBrandResult!
+    getCategories: NexusGenRootTypes['GetCategoriesResult']; // GetCategoriesResult!
+    getCategory: NexusGenRootTypes['GetCategoryResult']; // GetCategoryResult!
+    getCategoryProducts: NexusGenRootTypes['GetCategoryProductsResult']; // GetCategoryProductsResult!
     getCompanies: NexusGenRootTypes['GetCompaniesResult']; // GetCompaniesResult!
     getCompany: NexusGenRootTypes['GetCompanyResult']; // GetCompanyResult!
     getItems: NexusGenRootTypes['GetItemsResult']; // GetItemsResult!
     getOrder: NexusGenRootTypes['GetOrderResult']; // GetOrderResult!
     getOrders: NexusGenRootTypes['GetOrdersResult']; // GetOrdersResult!
     getProductVendors: NexusGenRootTypes['GetProductVendorsResult']; // GetProductVendorsResult!
+    getSubCategories: NexusGenRootTypes['GetSubCategoriesResult']; // GetSubCategoriesResult!
+    getSubCategoryProducts: NexusGenRootTypes['GetSubCategoryProductsResult']; // GetSubCategoryProductsResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
     getVendor: NexusGenRootTypes['GetVendorResult']; // GetVendorResult!
     getVendorProducts: NexusGenRootTypes['GetVendorProductsResult']; // GetVendorProductsResult!
@@ -479,6 +566,27 @@ export interface NexusGenFieldTypeNames {
     slug: 'String'
     updated_at: 'String'
   }
+  Category: { // field return type name
+    categoryProducts: 'CategoryProduct'
+    created_at: 'String'
+    icon: 'String'
+    id: 'String'
+    is_active: 'Boolean'
+    name: 'String'
+    priority: 'Int'
+    slug: 'String'
+    sub_id: 'String'
+    updated_at: 'String'
+  }
+  CategoryProduct: { // field return type name
+    categories: 'Category'
+    created_at: 'String'
+    id: 'String'
+    is_active: 'Boolean'
+    products: 'Product'
+    sub_id: 'String'
+    updated_at: 'String'
+  }
   CheckCodeResult: { // field return type name
     message: 'String'
     phoneConfirmation: 'PhoneConfirmation'
@@ -519,6 +627,18 @@ export interface NexusGenFieldTypeNames {
     brand: 'Brand'
     message: 'String'
   }
+  GetCategoriesResult: { // field return type name
+    categories: 'Category'
+    message: 'String'
+  }
+  GetCategoryProductsResult: { // field return type name
+    categoryProducts: 'CategoryProduct'
+    message: 'String'
+  }
+  GetCategoryResult: { // field return type name
+    category: 'Category'
+    message: 'String'
+  }
   GetCompaniesResult: { // field return type name
     companies: 'Company'
     message: 'String'
@@ -542,6 +662,14 @@ export interface NexusGenFieldTypeNames {
   GetProductVendorsResult: { // field return type name
     message: 'String'
     productVendors: 'VendorProduct'
+  }
+  GetSubCategoriesResult: { // field return type name
+    message: 'String'
+    subCategories: 'Category'
+  }
+  GetSubCategoryProductsResult: { // field return type name
+    message: 'String'
+    subCategoryProducts: 'CategoryProduct'
   }
   GetUserResult: { // field return type name
     message: 'String'
@@ -610,12 +738,17 @@ export interface NexusGenFieldTypeNames {
     getAddress: 'GetAddressResult'
     getAddresses: 'GetAddressesResult'
     getBrand: 'GetBrandResult'
+    getCategories: 'GetCategoriesResult'
+    getCategory: 'GetCategoryResult'
+    getCategoryProducts: 'GetCategoryProductsResult'
     getCompanies: 'GetCompaniesResult'
     getCompany: 'GetCompanyResult'
     getItems: 'GetItemsResult'
     getOrder: 'GetOrderResult'
     getOrders: 'GetOrdersResult'
     getProductVendors: 'GetProductVendorsResult'
+    getSubCategories: 'GetSubCategoriesResult'
+    getSubCategoryProducts: 'GetSubCategoryProductsResult'
     getUser: 'GetUserResult'
     getVendor: 'GetVendorResult'
     getVendorProducts: 'GetVendorProductsResult'
@@ -692,6 +825,12 @@ export interface NexusGenArgTypes {
     getBrand: { // args
       id: string; // String!
     }
+    getCategory: { // args
+      id: string; // String!
+    }
+    getCategoryProducts: { // args
+      category_id: string; // String!
+    }
     getCompanies: { // args
       user_id: string; // String!
     }
@@ -709,6 +848,12 @@ export interface NexusGenArgTypes {
     }
     getProductVendors: { // args
       input: NexusGenInputs['ProductVendorsInput']; // ProductVendorsInput!
+    }
+    getSubCategories: { // args
+      sub_id: string; // String!
+    }
+    getSubCategoryProducts: { // args
+      sub_id: string; // String!
     }
     getUser: { // args
       phone: string; // String!

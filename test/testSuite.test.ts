@@ -7,6 +7,8 @@ import { addressTest } from "./address";
 // import { brandTest } from "./brand";
 // import { vendorTest } from "./vendor";
 // import { vendorProductTest } from "./vendorProduct";
+// import { categoryTest } from "./category";
+// import { categoryProductTest } from "./categoryProduct";
 
 describe("multivendor api test", () => {
   userTest();
@@ -18,4 +20,6 @@ describe("multivendor api test", () => {
   // brandTest();
   // vendorTest();
   // vendorProductTest();
+  // categoryTest();
+  // categoryProductTest();
 });
