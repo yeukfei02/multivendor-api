@@ -17,6 +17,10 @@ import { GetCategoryResult } from "../types/getCategoryResult";
 import { GetSubCategoriesResult } from "../types/getSubCategoriesResult";
 import { GetCategoryProductsResult } from "../types/getCategoryProductsResult";
 import { GetSubCategoryProductsResult } from "../types/getSubCategoryProductsResult";
+import { GetProductResult } from "../types/getProductResult";
+import { GetBrandProductsResult } from "../types/getBrandProductsResult";
+import { GetProductCategoriesResult } from "../types/getProductCategoriesResult";
+import { GetProductSubCategoriesResult } from "../types/getProductSubCategoriesResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
 import { ProductVendorsInput } from "../input/productVendorsInput";
@@ -52,6 +56,12 @@ import {
   getCategoryProductsControllerFunc,
   getSubCategoryProductsControllerFunc,
 } from "../../controller/categoryProduct";
+import {
+  getProductCategoriesControllerFunc,
+  getProductSubCategoriesControllerFunc,
+  getProductControllerFunc,
+  getBrandProductsControllerFunc,
+} from "../../controller/product";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -159,4 +169,28 @@ export const getSubCategoryProducts = queryField("getSubCategoryProducts", {
   type: nonNull(GetSubCategoryProductsResult),
   args: { sub_id: nonNull(stringArg()) },
   resolve: getSubCategoryProductsControllerFunc,
+});
+
+export const getProductCategories = queryField("getProductCategories", {
+  type: nonNull(GetProductCategoriesResult),
+  args: { category_id: nonNull(stringArg()) },
+  resolve: getProductCategoriesControllerFunc,
+});
+
+export const getProductSubCategories = queryField("getProductSubCategories", {
+  type: nonNull(GetProductSubCategoriesResult),
+  args: { sub_id: nonNull(stringArg()) },
+  resolve: getProductSubCategoriesControllerFunc,
+});
+
+export const getProduct = queryField("getProduct", {
+  type: nonNull(GetProductResult),
+  args: { id: nonNull(stringArg()) },
+  resolve: getProductControllerFunc,
+});
+
+export const getBrandProducts = queryField("getBrandProducts", {
+  type: nonNull(GetBrandProductsResult),
+  args: { brand_id: nonNull(stringArg()) },
+  resolve: getBrandProductsControllerFunc,
 });
