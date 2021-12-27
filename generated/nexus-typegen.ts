@@ -44,6 +44,15 @@ export interface NexusGenInputs {
     code: string; // String!
     phone: string; // String!
   }
+  ProductVendorsInput: { // input type
+    product_id: string; // String!
+    vendor_id: string; // String!
+  }
+  VendorProductsInput: { // input type
+    category_id: string; // String!
+    sub_id: string; // String!
+    vendor_id: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -139,9 +148,17 @@ export interface NexusGenObjects {
     message: string; // String!
     orders?: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
   }
+  GetProductVendorsResult: { // root type
+    message: string; // String!
+    productVendors?: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+  }
   GetUserResult: { // root type
     message: string; // String!
     user?: NexusGenRootTypes['User'] | null; // User
+  }
+  GetVendorProductsResult: { // root type
+    message: string; // String!
+    vendorProducts?: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
   }
   GetVendorResult: { // root type
     message: string; // String!
@@ -321,9 +338,17 @@ export interface NexusGenFieldTypes {
     message: string; // String!
     orders: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
   }
+  GetProductVendorsResult: { // field return type
+    message: string; // String!
+    productVendors: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
+  }
   GetUserResult: { // field return type
     message: string; // String!
     user: NexusGenRootTypes['User'] | null; // User
+  }
+  GetVendorProductsResult: { // field return type
+    message: string; // String!
+    vendorProducts: Array<NexusGenRootTypes['VendorProduct'] | null> | null; // [VendorProduct]
   }
   GetVendorResult: { // field return type
     message: string; // String!
@@ -389,8 +414,10 @@ export interface NexusGenFieldTypes {
     getItems: NexusGenRootTypes['GetItemsResult']; // GetItemsResult!
     getOrder: NexusGenRootTypes['GetOrderResult']; // GetOrderResult!
     getOrders: NexusGenRootTypes['GetOrdersResult']; // GetOrdersResult!
+    getProductVendors: NexusGenRootTypes['GetProductVendorsResult']; // GetProductVendorsResult!
     getUser: NexusGenRootTypes['GetUserResult']; // GetUserResult!
     getVendor: NexusGenRootTypes['GetVendorResult']; // GetVendorResult!
+    getVendorProducts: NexusGenRootTypes['GetVendorProductsResult']; // GetVendorProductsResult!
   }
   RepeatOrderResult: { // field return type
     message: string; // String!
@@ -512,9 +539,17 @@ export interface NexusGenFieldTypeNames {
     message: 'String'
     orders: 'Order'
   }
+  GetProductVendorsResult: { // field return type name
+    message: 'String'
+    productVendors: 'VendorProduct'
+  }
   GetUserResult: { // field return type name
     message: 'String'
     user: 'User'
+  }
+  GetVendorProductsResult: { // field return type name
+    message: 'String'
+    vendorProducts: 'VendorProduct'
   }
   GetVendorResult: { // field return type name
     message: 'String'
@@ -580,8 +615,10 @@ export interface NexusGenFieldTypeNames {
     getItems: 'GetItemsResult'
     getOrder: 'GetOrderResult'
     getOrders: 'GetOrdersResult'
+    getProductVendors: 'GetProductVendorsResult'
     getUser: 'GetUserResult'
     getVendor: 'GetVendorResult'
+    getVendorProducts: 'GetVendorProductsResult'
   }
   RepeatOrderResult: { // field return type name
     message: 'String'
@@ -670,11 +707,17 @@ export interface NexusGenArgTypes {
     getOrders: { // args
       user_id: string; // String!
     }
+    getProductVendors: { // args
+      input: NexusGenInputs['ProductVendorsInput']; // ProductVendorsInput!
+    }
     getUser: { // args
       phone: string; // String!
     }
     getVendor: { // args
       id: string; // String!
+    }
+    getVendorProducts: { // args
+      input: NexusGenInputs['VendorProductsInput']; // VendorProductsInput!
     }
   }
 }

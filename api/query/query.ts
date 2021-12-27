@@ -10,8 +10,12 @@ import { GetOrdersResult } from "../types/getOrdersResult";
 import { GetOrderResult } from "../types/getOrderResult";
 import { GetBrandResult } from "../types/getBrandResult";
 import { GetVendorResult } from "../types/getVendorResult";
+import { GetProductVendorsResult } from "../types/getProductVendorsResult";
+import { GetVendorProductsResult } from "../types/getVendorProductsResult";
 
 import { CheckCodeInput } from "../input/checkCodeInput";
+import { ProductVendorsInput } from "../input/productVendorsInput";
+import { VendorProductsInput } from "../input/vendorProductsInput";
 
 import { getUserControllerFunc } from "../../controller/user";
 import {
@@ -30,6 +34,10 @@ import {
 } from "../../controller/order";
 import { getBrandControllerFunc } from "../../controller/brand";
 import { getVendorControllerFunc } from "../../controller/vendor";
+import {
+  getProductVendorsControllerFunc,
+  getVendorProductsControllerFunc,
+} from "../../controller/vendorProduct";
 
 export const getUser = queryField("getUser", {
   type: nonNull(GetUserResult),
@@ -95,4 +103,16 @@ export const getVendor = queryField("getVendor", {
   type: nonNull(GetVendorResult),
   args: { id: nonNull(stringArg()) },
   resolve: getVendorControllerFunc,
+});
+
+export const getProductVendors = queryField("getProductVendors", {
+  type: nonNull(GetProductVendorsResult),
+  args: { input: nonNull(ProductVendorsInput) },
+  resolve: getProductVendorsControllerFunc,
+});
+
+export const getVendorProducts = queryField("getVendorProducts", {
+  type: nonNull(GetVendorProductsResult),
+  args: { input: nonNull(VendorProductsInput) },
+  resolve: getVendorProductsControllerFunc,
 });
