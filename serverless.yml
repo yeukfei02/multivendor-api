@@ -23,6 +23,7 @@ provider:
     shouldStartNameWithService: true
     description: multivendor api prod
   lambdaHashingVersion: 20201221
+  architecture: arm64
   timeout: 30
 
 functions:
