@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/yeukfei02/multivendor-api/compare/v0.1.2...v0.1.3) (2022-01-12)
+
+
+### Features
+
+* 🎸 update sls lib and use arm64 arch ([7c954ed](https://github.com/yeukfei02/multivendor-api/commit/7c954ed6e51b0ac67e0b01a732c48e237b00267d))
+
 ### [0.1.2](https://github.com/yeukfei02/multivendor-api/compare/v0.1.1...v0.1.2) (2022-01-04)
 
 
