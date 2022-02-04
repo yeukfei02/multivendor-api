@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/yeukfei02/multivendor-api/compare/v0.1.4...v0.1.5) (2022-02-04)
+
+
+### Features
+
+* 🎸 add index and update prisma lib ([cd09247](https://github.com/yeukfei02/multivendor-api/commit/cd09247618113eeacb38d397134d82a15297bfe3))
+
 ### [0.1.4](https://github.com/yeukfei02/multivendor-api/compare/v0.1.3...v0.1.4) (2022-01-31)
 
 
