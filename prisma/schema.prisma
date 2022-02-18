@@ -22,13 +22,13 @@ model users {
   last_events        last_event[]
   orders             order[]
 
-  @@index([phone], name: "index_users_on_phone")
-  @@index([phone_confirmed], name: "index_users_on_phone_confirmed")
-  @@index([type], name: "index_users_on_type")
-  @@index([allow_order], name: "index_users_on_allow_order")
-  @@index([is_active], name: "index_users_on_is_active")
-  @@index([created_at], name: "index_users_on_created_at")
-  @@index([updated_at], name: "index_users_on_updated_at")
+  @@index([allow_order], map: "index_users_on_allow_order")
+  @@index([created_at], map: "index_users_on_created_at")
+  @@index([is_active], map: "index_users_on_is_active")
+  @@index([phone], map: "index_users_on_phone")
+  @@index([phone_confirmed], map: "index_users_on_phone_confirmed")
+  @@index([type], map: "index_users_on_type")
+  @@index([updated_at], map: "index_users_on_updated_at")
 }
 
 model last_event {
@@ -39,10 +39,10 @@ model last_event {
   updated_at DateTime @default(now())
   users      users?   @relation(fields: [user_id], references: [id])
 
-  @@index([type], name: "index_last_event_on_type")
-  @@index([user_id], name: "index_last_event_on_user_id")
-  @@index([created_at], name: "index_last_event_on_created_at")
-  @@index([updated_at], name: "index_last_event_on_updated_at")
+  @@index([created_at], map: "index_last_event_on_created_at")
+  @@index([type], map: "index_last_event_on_type")
+  @@index([updated_at], map: "index_last_event_on_updated_at")
+  @@index([user_id], map: "index_last_event_on_user_id")
 }
 
 model phone_confirmation {
@@ -54,12 +54,12 @@ model phone_confirmation {
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
 
-  @@index([phone], name: "index_phone_confirmation_on_phone")
-  @@index([code], name: "index_phone_confirmation_on_code")
-  @@index([ip], name: "index_phone_confirmation_on_ip")
-  @@index([used_at], name: "index_phone_confirmation_on_used_at")
-  @@index([created_at], name: "index_phone_confirmation_on_created_at")
-  @@index([updated_at], name: "index_phone_confirmation_on_updated_at")
+  @@index([code], map: "index_phone_confirmation_on_code")
+  @@index([created_at], map: "index_phone_confirmation_on_created_at")
+  @@index([ip], map: "index_phone_confirmation_on_ip")
+  @@index([phone], map: "index_phone_confirmation_on_phone")
+  @@index([updated_at], map: "index_phone_confirmation_on_updated_at")
+  @@index([used_at], map: "index_phone_confirmation_on_used_at")
 }
 
 model company {
@@ -73,12 +73,12 @@ model company {
   users      users?   @relation(fields: [user_id], references: [id])
   orders     order[]
 
-  @@index([code], name: "index_company_on_code")
-  @@index([name], name: "index_company_on_name")
-  @@index([address], name: "index_company_on_address")
-  @@index([user_id], name: "index_company_on_user_id")
-  @@index([created_at], name: "index_company_on_created_at")
-  @@index([updated_at], name: "index_company_on_updated_at")
+  @@index([address], map: "index_company_on_address")
+  @@index([code], map: "index_company_on_code")
+  @@index([created_at], map: "index_company_on_created_at")
+  @@index([name], map: "index_company_on_name")
+  @@index([updated_at], map: "index_company_on_updated_at")
+  @@index([user_id], map: "index_company_on_user_id")
 }
 
 model delivery_address {
@@ -93,14 +93,14 @@ model delivery_address {
   updated_at DateTime  @default(now())
   users      users?    @relation(fields: [user_id], references: [id])
 
-  @@index([address], name: "index_delivery_address_on_address")
-  @@index([geo_code], name: "index_delivery_address_on_geo_code")
-  @@index([last_used], name: "index_delivery_address_on_last_used")
-  @@index([comment], name: "index_delivery_address_on_comment")
-  @@index([phone], name: "index_delivery_address_on_phone")
-  @@index([user_id], name: "index_delivery_address_on_user_id")
-  @@index([created_at], name: "index_delivery_address_on_created_at")
-  @@index([updated_at], name: "index_delivery_address_on_updated_at")
+  @@index([address], map: "index_delivery_address_on_address")
+  @@index([comment], map: "index_delivery_address_on_comment")
+  @@index([created_at], map: "index_delivery_address_on_created_at")
+  @@index([geo_code], map: "index_delivery_address_on_geo_code")
+  @@index([last_used], map: "index_delivery_address_on_last_used")
+  @@index([phone], map: "index_delivery_address_on_phone")
+  @@index([updated_at], map: "index_delivery_address_on_updated_at")
+  @@index([user_id], map: "index_delivery_address_on_user_id")
 }
 
 model order {
@@ -123,19 +123,19 @@ model order {
   vendor         vendor       @relation(fields: [vendor_id], references: [id])
   order_items    order_item[]
 
-  @@index([number], name: "index_order_on_number")
-  @@index([status], name: "index_order_on_status")
-  @@index([comment], name: "index_order_on_comment")
-  @@index([address], name: "index_order_on_address")
-  @@index([delivery_at], name: "index_order_on_delivery_at")
-  @@index([delivery_price], name: "index_order_on_delivery_price")
-  @@index([discount], name: "index_order_on_discount")
-  @@index([total], name: "index_order_on_total")
-  @@index([user_id], name: "index_order_on_user_id")
-  @@index([company_id], name: "index_order_on_company_id")
-  @@index([vendor_id], name: "index_order_on_vendor_id")
-  @@index([created_at], name: "index_order_on_created_at")
-  @@index([updated_at], name: "index_order_on_updated_at")
+  @@index([address], map: "index_order_on_address")
+  @@index([comment], map: "index_order_on_comment")
+  @@index([company_id], map: "index_order_on_company_id")
+  @@index([created_at], map: "index_order_on_created_at")
+  @@index([delivery_at], map: "index_order_on_delivery_at")
+  @@index([delivery_price], map: "index_order_on_delivery_price")
+  @@index([discount], map: "index_order_on_discount")
+  @@index([number], map: "index_order_on_number")
+  @@index([status], map: "index_order_on_status")
+  @@index([total], map: "index_order_on_total")
+  @@index([updated_at], map: "index_order_on_updated_at")
+  @@index([user_id], map: "index_order_on_user_id")
+  @@index([vendor_id], map: "index_order_on_vendor_id")
 }
 
 model vendor {
@@ -152,15 +152,15 @@ model vendor {
   orders          order[]
   vendor_products vendor_product[]
 
-  @@index([name], name: "index_vendor_on_name")
-  @@index([slug], name: "index_vendor_on_slug")
-  @@index([payment], name: "index_vendor_on_payment")
-  @@index([delivery], name: "index_vendor_on_delivery")
-  @@index([description], name: "index_vendor_on_description")
-  @@index([working_hours], name: "index_vendor_on_working_hours")
-  @@index([rating], name: "index_vendor_on_rating")
-  @@index([created_at], name: "index_vendor_on_created_at")
-  @@index([updated_at], name: "index_vendor_on_updated_at")
+  @@index([created_at], map: "index_vendor_on_created_at")
+  @@index([delivery], map: "index_vendor_on_delivery")
+  @@index([description], map: "index_vendor_on_description")
+  @@index([name], map: "index_vendor_on_name")
+  @@index([payment], map: "index_vendor_on_payment")
+  @@index([rating], map: "index_vendor_on_rating")
+  @@index([slug], map: "index_vendor_on_slug")
+  @@index([updated_at], map: "index_vendor_on_updated_at")
+  @@index([working_hours], map: "index_vendor_on_working_hours")
 }
 
 model brand {
@@ -172,11 +172,11 @@ model brand {
   updated_at DateTime  @default(now())
   products   product[]
 
-  @@index([name], name: "index_brand_on_name")
-  @@index([slug], name: "index_brand_on_slug")
-  @@index([is_active], name: "index_brand_on_is_active")
-  @@index([created_at], name: "index_brand_on_created_at")
-  @@index([updated_at], name: "index_brand_on_updated_at")
+  @@index([created_at], map: "index_brand_on_created_at")
+  @@index([is_active], map: "index_brand_on_is_active")
+  @@index([name], map: "index_brand_on_name")
+  @@index([slug], map: "index_brand_on_slug")
+  @@index([updated_at], map: "index_brand_on_updated_at")
 }
 
 model product {
@@ -196,16 +196,16 @@ model product {
   order_items       order_item[]
   vendor_products   vendor_product[]
 
-  @@index([name], name: "index_product_on_name")
-  @@index([slug], name: "index_product_on_slug")
-  @@index([description], name: "index_product_on_description")
-  @@index([price], name: "index_product_on_price")
-  @@index([photo], name: "index_product_on_photo")
-  @@index([weight], name: "index_product_on_weight")
-  @@index([is_active], name: "index_product_on_is_active")
-  @@index([brand_id], name: "index_product_on_brand_id")
-  @@index([created_at], name: "index_product_on_created_at")
-  @@index([updated_at], name: "index_product_on_updated_at")
+  @@index([brand_id], map: "index_product_on_brand_id")
+  @@index([created_at], map: "index_product_on_created_at")
+  @@index([description], map: "index_product_on_description")
+  @@index([is_active], map: "index_product_on_is_active")
+  @@index([name], map: "index_product_on_name")
+  @@index([photo], map: "index_product_on_photo")
+  @@index([price], map: "index_product_on_price")
+  @@index([slug], map: "index_product_on_slug")
+  @@index([updated_at], map: "index_product_on_updated_at")
+  @@index([weight], map: "index_product_on_weight")
 }
 
 model vendor_product {
@@ -220,13 +220,13 @@ model vendor_product {
   product    product  @relation(fields: [product_id], references: [id])
   vendor     vendor   @relation(fields: [vendor_id], references: [id])
 
-  @@index([price], name: "index_vendor_product_on_price")
-  @@index([min_count], name: "index_vendor_product_on_min_count")
-  @@index([unit], name: "index_vendor_product_on_unit")
-  @@index([vendor_id], name: "index_vendor_product_on_vendor_id")
-  @@index([product_id], name: "index_vendor_product_on_product_id")
-  @@index([created_at], name: "index_vendor_product_on_created_at")
-  @@index([updated_at], name: "index_vendor_product_on_updated_at")
+  @@index([created_at], map: "index_vendor_product_on_created_at")
+  @@index([min_count], map: "index_vendor_product_on_min_count")
+  @@index([price], map: "index_vendor_product_on_price")
+  @@index([product_id], map: "index_vendor_product_on_product_id")
+  @@index([unit], map: "index_vendor_product_on_unit")
+  @@index([updated_at], map: "index_vendor_product_on_updated_at")
+  @@index([vendor_id], map: "index_vendor_product_on_vendor_id")
 }
 
 model order_item {
@@ -240,12 +240,12 @@ model order_item {
   order      order    @relation(fields: [order_id], references: [id])
   product    product  @relation(fields: [product_id], references: [id])
 
-  @@index([price], name: "index_order_item_on_price")
-  @@index([count], name: "index_order_item_on_count")
-  @@index([order_id], name: "index_order_item_on_order_id")
-  @@index([product_id], name: "index_order_item_on_product_id")
-  @@index([created_at], name: "index_order_item_on_created_at")
-  @@index([updated_at], name: "index_order_item_on_updated_at")
+  @@index([count], map: "index_order_item_on_count")
+  @@index([created_at], map: "index_order_item_on_created_at")
+  @@index([order_id], map: "index_order_item_on_order_id")
+  @@index([price], map: "index_order_item_on_price")
+  @@index([product_id], map: "index_order_item_on_product_id")
+  @@index([updated_at], map: "index_order_item_on_updated_at")
 }
 
 model category {
@@ -260,14 +260,14 @@ model category {
   updated_at        DateTime           @default(now())
   category_products category_product[]
 
-  @@index([sub_id], name: "index_category_on_sub_id")
-  @@index([name], name: "index_category_on_name")
-  @@index([slug], name: "index_category_on_slug")
-  @@index([icon], name: "index_category_on_icon")
-  @@index([priority], name: "index_category_on_priority")
-  @@index([is_active], name: "index_category_on_is_active")
-  @@index([created_at], name: "index_category_on_created_at")
-  @@index([updated_at], name: "index_category_on_updated_at")
+  @@index([created_at], map: "index_category_on_created_at")
+  @@index([icon], map: "index_category_on_icon")
+  @@index([is_active], map: "index_category_on_is_active")
+  @@index([name], map: "index_category_on_name")
+  @@index([priority], map: "index_category_on_priority")
+  @@index([slug], map: "index_category_on_slug")
+  @@index([sub_id], map: "index_category_on_sub_id")
+  @@index([updated_at], map: "index_category_on_updated_at")
 }
 
 model category_product {
@@ -281,10 +281,10 @@ model category_product {
   category    category @relation(fields: [category_id], references: [id])
   product     product  @relation(fields: [product_id], references: [id])
 
-  @@index([sub_id], name: "index_category_product_on_sub_id")
-  @@index([is_active], name: "index_category_product_on_is_active")
-  @@index([category_id], name: "index_category_product_on_category_id")
-  @@index([product_id], name: "index_category_product_on_product_id")
-  @@index([created_at], name: "index_category_product_on_created_at")
-  @@index([updated_at], name: "index_category_product_on_updated_at")
+  @@index([category_id], map: "index_category_product_on_category_id")
+  @@index([created_at], map: "index_category_product_on_created_at")
+  @@index([is_active], map: "index_category_product_on_is_active")
+  @@index([product_id], map: "index_category_product_on_product_id")
+  @@index([sub_id], map: "index_category_product_on_sub_id")
+  @@index([updated_at], map: "index_category_product_on_updated_at")
 }
