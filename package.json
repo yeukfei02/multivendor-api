@@ -6,7 +6,7 @@
   "author": "Donald Wu <yeukfei02@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.11.0",
     "apollo-server-lambda": "2.25.3",
     "dayjs": "^1.10.7",
     "graphql": "15.8.0",
@@ -29,7 +29,7 @@
     "husky": "^7.0.0",
     "jest": "^27.4.5",
     "prettier": "^2.5.1",
-    "prisma": "^3.10.0",
+    "prisma": "^3.11.0",
     "serverless": "^3.7.8",
     "serverless-offline": "^8.5.0",
     "serverless-plugin-typescript": "^2.1.1",
