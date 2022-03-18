@@ -2,7 +2,7 @@ org: yeukfei05
 app: multivendor-api
 service: multivendor-api
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 useDotenv: true
 
 provider:
