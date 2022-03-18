@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/yeukfei02/multivendor-api/compare/v0.1.7...v0.1.8) (2022-03-18)
+
+
+### Bug Fixes
+
+* 🐛 update prisma lib ([ceccb82](https://github.com/yeukfei02/multivendor-api/commit/ceccb82501eecd6edddea4c7d7603309291b85b9))
+
 ### [0.1.7](https://github.com/yeukfei02/multivendor-api/compare/v0.1.6...v0.1.7) (2022-03-18)
 
 
