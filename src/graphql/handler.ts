@@ -6,7 +6,7 @@ const server = new ApolloServer({
   tracing: true,
   introspection: true,
   playground: {
-    endpoint: "/dev",
+    endpoint: "/prod",
   },
   context: ({ event, context }) => {
     context.callbackWaitsForEmptyEventLoop = false;

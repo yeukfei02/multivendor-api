@@ -1,6 +1,6 @@
 {
   "name": "multivendor-api",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "main": "app.js",
   "repository": "https://github.com/yeukfei02/multivendor-api.git",
   "author": "Donald Wu <yeukfei02@gmail.com>",
