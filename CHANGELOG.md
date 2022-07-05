@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/yeukfei02/multivendor-api/compare/v0.1.8...v0.1.9) (2022-07-05)
+
+
+### Bug Fixes
+
+* 🐛 update prisma lib and fix pre commit ([118915d](https://github.com/yeukfei02/multivendor-api/commit/118915d2f6c870d1d5873bc70afab9b75c3d3e0d))
+* 🐛 update sls and prisma lib ([5a1b14c](https://github.com/yeukfei02/multivendor-api/commit/5a1b14c62737d537ec36d87de3543a8ec5975aa3))
+* 🐛 update stage and env to development ([5659bdd](https://github.com/yeukfei02/multivendor-api/commit/5659bdda45d6b64a13914314ab09625dc75c0f36))
+
 ### [0.1.8](https://github.com/yeukfei02/multivendor-api/compare/v0.1.7...v0.1.8) (2022-03-18)
 
 
