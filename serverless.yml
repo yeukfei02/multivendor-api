@@ -8,21 +8,21 @@ useDotenv: true
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: dev
+  stage: prod
   region: ap-southeast-1
-  apiName: multivendor-api-dev
+  apiName: multivendor-api-prod
   tracing:
     apiGateway: true
     lambda: true
   environment:
-    NODE_ENV: development
+    NODE_ENV: production
     USER_AWS_ACCESS_KEY_ID: ${param:USER_AWS_ACCESS_KEY_ID}
     USER_AWS_SECRET_ACCESS_KEY: ${param:USER_AWS_SECRET_ACCESS_KEY}
     DATABASE_URL_DEV: ${param:DATABASE_URL_DEV}
     DATABASE_URL: ${param:DATABASE_URL}
   apiGateway:
     shouldStartNameWithService: true
-    description: multivendor api dev
+    description: multivendor api prod
   lambdaHashingVersion: 20201221
   architecture: arm64
   timeout: 30
